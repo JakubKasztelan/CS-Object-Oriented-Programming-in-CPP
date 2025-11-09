@@ -14,9 +14,9 @@ enable_testing()
 include(GoogleTest)
 
 
-add_executable(Matrix Martix.cpp
-        Martix.h
-        TestMartix.cpp)
+add_executable(Matrix Matrix.cpp
+        Matrix.h
+        TestMatrix.cpp)
 
 target_link_libraries(tests PRIVATE
         ComplexLib

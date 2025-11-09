@@ -3,11 +3,11 @@
 
 #include <ostream>
 
-class Martix {
+class Matrix {
 public:
-    Martix();
-    Martix(const Martix& other);
-    Martix& operator=(const Matrix& other);
+    Matrix();
+    Matrix(const Matrix& other);
+    Matrix& operator=(const Matrix& other);
 
     Matrix& operator+=(const Matrix& other);
     Matrix& operator-=(const Matrix& other);
