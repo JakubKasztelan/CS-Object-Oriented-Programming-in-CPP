@@ -22,5 +22,6 @@ Matrix operator-(const Matrix& a, const Matrix& b);
 Matrix operator*(const Matrix& a, const Matrix& b);
 
 std::ostream& operator<<(std::ostream& os, const Matrix& other);
+//comment
 
 #endif //MARTIX_H
