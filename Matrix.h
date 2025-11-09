@@ -4,13 +4,18 @@
 #include <ostream>
 
 class Matrix {
-private:
-    double *arr;
-
 public:
+    double **arr;
+    int capacityRow;
+    int capacityCol;
+    int sizeRow;
+    int sizeCol;
+    int *referenceCounter;
+
     Matrix();
-    Matrix(const Matrix& other);
-    Matrix& operator=(const Matrix& other);
+    Matrix(Matrix& other);
+    Matrix& operator=(Matrix& other);
+    ~Matrix();
 
     Matrix& operator+=(const Matrix& other);
     Matrix& operator-=(const Matrix& other);
