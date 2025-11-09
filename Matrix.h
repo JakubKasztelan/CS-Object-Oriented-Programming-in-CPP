@@ -4,6 +4,9 @@
 #include <ostream>
 
 class Matrix {
+private:
+    double *arr;
+
 public:
     Matrix();
     Matrix(const Matrix& other);
@@ -13,8 +16,8 @@ public:
     Matrix& operator-=(const Matrix& other);
     Matrix& operator*=(const Matrix& other);
 
-    operator==(const Matrix& other) const;
-    operator!=(const Matrix& other) const;
+    bool operator==(const Matrix& other) const;
+    bool operator!=(const Matrix& other) const;
 };
 
 Matrix operator+(const Matrix& a, const Matrix& b);

@@ -1,3 +1,6 @@
-//
-// Created by Jakub Kasztelan on 09/11/2025.
-//
+#include "Matrix.h"
+#include <gtest/gtest.h>
+
+TEST(MatrixTests, Init) {
+    Matrix matrix;
+}

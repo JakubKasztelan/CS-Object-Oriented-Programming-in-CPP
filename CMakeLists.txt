@@ -13,14 +13,12 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 include(GoogleTest)
 
-
-add_executable(Matrix Matrix.cpp
-        Matrix.h
+add_executable(Matrix
+        Matrix.cpp
         TestMatrix.cpp)
 
-target_link_libraries(tests PRIVATE
-        ComplexLib
+target_link_libraries(Matrix PRIVATE
         GTest::gtest_main
 )
 
-gtest_discover_tests(tests)
+gtest_discover_tests(Matrix)
