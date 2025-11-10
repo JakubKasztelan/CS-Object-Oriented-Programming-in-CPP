@@ -7,16 +7,16 @@
 class Matrix {
 public:
     double **arr;
-    int capacityRow;
-    int capacityCol;
-    int sizeRow;
-    int sizeCol;
-    int *referenceCounter;
+    int rows;
+    int columns;
+    mutable int *referenceCounter;
 
-    Matrix();
-    Matrix(Matrix& other);
-    Matrix& operator=(Matrix& other);
+    Matrix(int rows = 0, int columns = 0);
+    Matrix(const Matrix& other);
+    Matrix& operator=(const Matrix& other);
     ~Matrix();
+
+    void loadFromFile(std::string filepath);
 
     Matrix& operator+=(const Matrix& other);
     Matrix& operator-=(const Matrix& other);
@@ -33,4 +33,4 @@ Matrix operator*(const Matrix& a, const Matrix& b);
 std::istream& operator>>(std::istream& is, Matrix& matrix);
 std::ostream& operator<<(std::ostream& os, const Matrix& other);
 
-#endif //MARTIX_H
+#endif

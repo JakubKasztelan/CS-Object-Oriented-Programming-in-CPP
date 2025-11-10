@@ -1,42 +1,34 @@
 #include "Matrix.h"
 
 #include <iostream>
+#include <fstream>
 
-#define INITIAL_ROWS 10
-#define INITIAL_COLUMNS 10
-
-Matrix::Matrix() {
-    capacityRow = INITIAL_ROWS;
-    capacityCol = INITIAL_COLUMNS;
-    sizeRow = 0;
-    sizeCol = 0;
+Matrix::Matrix(int rows, int columns) {
+    this->rows = rows;
+    this->columns = columns;
     referenceCounter = new int(1);
 
-    arr = new double*[capacityRow];
-    for (int i = 0; i < capacityRow; i++) {
-        arr[i] = new double[capacityCol];
+    arr = new double*[rows];
+    for (int i = 0; i < rows; i++) {
+        arr[i] = new double[columns];
     }
 }
 
-Matrix::Matrix(Matrix& other) {
-    capacityRow = other.sizeRow;
-    capacityCol = other.sizeCol;
-    sizeRow = other.sizeRow;
-    sizeCol = other.sizeCol;
+Matrix::Matrix(const Matrix& other) {
+    rows = other.rows;
+    columns = other.columns;
 
     arr = other.arr;
     referenceCounter = other.referenceCounter;
     (*referenceCounter)++;
 }
 
-Matrix& Matrix::operator=(Matrix& other) {
-    capacityRow = other.sizeRow;
-    capacityCol = other.sizeCol;
-    sizeRow = other.sizeRow;
-    sizeCol = other.sizeCol;
+Matrix& Matrix::operator=(const Matrix& other) {
+    rows = other.rows;
+    columns = other.columns;
 
     if (this->arr != nullptr) {
-        for (int i = 0; i < sizeRow; i++) {
+        for (int i = 0; i < rows; i++) {
             delete [] arr[i];
         }
         delete [] arr;
@@ -59,7 +51,7 @@ Matrix::~Matrix() {
         return;
     }
 
-    for (int i = 0; i < sizeRow; i++) {
+    for (int i = 0; i < rows; i++) {
         delete [] arr[i];
     }
     delete [] arr;
@@ -67,13 +59,51 @@ Matrix::~Matrix() {
 }
 
 
+void Matrix::loadFromFile(std::string filepath) {
+    std::ifstream file(filepath);
+
+    // Add exception here
+
+    file >> *this;
+}
+
+
+Matrix& Matrix::operator+=(const Matrix &other) {
+    if (rows != other.rows || columns != other.columns) {
+        std::cout << "Size mismatch\n";
+    }
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            arr[i][j] += other.arr[i][j];
+        }
+    }
+
+    return *this;
+}
+
+Matrix& Matrix::operator-=(const Matrix &other) {
+    if (rows != other.rows || columns != other.columns) {
+        std::cout << "Size mismatch\n";
+    }
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            arr[i][j] -= other.arr[i][j];
+        }
+    }
+
+    return *this;
+}
+
+
 bool Matrix::operator==(const Matrix& other) const{
-    if (this->sizeRow != other.sizeRow || this->sizeCol != other.sizeCol) {
+    if (this->rows != other.rows || this->columns != other.columns) {
         return false;
     }
 
-    for (int i = 0; i < sizeRow; i++) {
-        for (int j = 0; j < sizeCol; j++) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
             if (this->arr[i][j] != other.arr[i][j]) {
                 return false;
             }
@@ -82,6 +112,56 @@ bool Matrix::operator==(const Matrix& other) const{
 
     return true;
 }
+
+bool Matrix::operator!=(const Matrix& other) const{
+    if (this->rows != other.rows || this->columns != other.columns) {
+        return false;
+    }
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            if (this->arr[i][j] == other.arr[i][j]) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+
+Matrix operator+(const Matrix &a, const Matrix &b) {
+    if (a.rows != b.rows || a.columns != b.columns) {
+        std::cout << "Size mismatch\n";
+    }
+
+    Matrix c(a.rows, a.columns);
+
+    for (int i = 0; i < c.rows; i++) {
+        for (int j = 0; j < c.columns; j++) {
+            c.arr[i][j] = a.arr[i][j] + b.arr[i][j];
+        }
+    }
+
+    return c;
+}
+
+Matrix operator-(const Matrix &a, const Matrix &b) {
+    if (a.rows != b.rows || a.columns != b.columns) {
+        std::cout << "Size mismatch\n";
+    }
+
+    Matrix c(a.rows, a.columns);
+
+    for (int i = 0; i < c.rows; i++) {
+        for (int j = 0; j < c.columns; j++) {
+            c.arr[i][j] = a.arr[i][j] - b.arr[i][j];
+        }
+    }
+
+    return c;
+}
+
 
 
 std::istream& operator>>(std::istream& is, Matrix& matrix) {
@@ -97,7 +177,7 @@ std::istream& operator>>(std::istream& is, Matrix& matrix) {
 
     if (matrix.arr) {
         if (--(*matrix.referenceCounter) == 0) {
-            for (int i = 0; i < matrix.capacityRow; i++) {
+            for (int i = 0; i < matrix.rows; i++) {
                 delete [] matrix.arr[i];
             }
             delete [] matrix.arr;
@@ -107,20 +187,18 @@ std::istream& operator>>(std::istream& is, Matrix& matrix) {
         matrix.referenceCounter = nullptr;
     }
 
-    matrix.capacityRow = rows;
-    matrix.sizeRow = rows;
-    matrix.capacityCol = columns;
-    matrix.sizeCol = columns;
-    matrix.arr = new double*[matrix.sizeRow];
-    for (int i = 0; i < matrix.sizeRow; i++) {
-        matrix.arr[i] = new double[matrix.sizeCol];
+    matrix.rows = rows;
+    matrix.columns = columns;
+    matrix.arr = new double*[matrix.rows];
+    for (int i = 0; i < matrix.rows; i++) {
+        matrix.arr[i] = new double[matrix.columns];
     }
     matrix.referenceCounter = new int(1);
 
-    for (int i = 0; i < matrix.sizeRow; i++) {
-        for (int j = 0; j < matrix.sizeCol; j++) {
+    for (int i = 0; i < matrix.rows; i++) {
+        for (int j = 0; j < matrix.columns; j++) {
             if (!(is >> matrix.arr[i][j])) {
-                std::cout << "Invalid or incomplete matrix data\n";
+                std::cout << "Read error\n";
             }
         }
     }
@@ -128,8 +206,8 @@ std::istream& operator>>(std::istream& is, Matrix& matrix) {
 }
 
 std::ostream& operator<<(std::ostream& os, const Matrix& matrix) {
-    for (int i = 0; i < matrix.sizeRow; i++) {
-        for (int j = 0; j < matrix.sizeCol; j++) {
+    for (int i = 0; i < matrix.rows; i++) {
+        for (int j = 0; j < matrix.columns; j++) {
             os << matrix.arr[i][j] << " ";
         }
         os << "\n";
