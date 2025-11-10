@@ -1,5 +1,5 @@
-#ifndef MARTIX_H
-#define MARTIX_H
+#ifndef MATRIX_H
+#define MATRIX_H
 
 #include <ostream>
 #include <istream>

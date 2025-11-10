@@ -44,6 +44,8 @@ Matrix& Matrix::operator=(const Matrix& other) {
     columns = other.columns;
     referenceCounter = other.referenceCounter;
     (*referenceCounter)++;
+
+    return *this;
 }
 
 Matrix::~Matrix() {
@@ -89,6 +91,8 @@ Matrix& Matrix::operator+=(double number) {
             arr[i][j] += number;
         }
     }
+
+    return *this;
 }
 
 
@@ -112,6 +116,8 @@ Matrix& Matrix::operator-=(double number) {
             arr[i][j] -= number;
         }
     }
+
+    return *this;
 }
 
 
@@ -142,6 +148,8 @@ Matrix& Matrix::operator*=(double number) {
             arr[i][j] *= number;
         }
     }
+
+    return *this;
 }
 
 
