@@ -78,6 +78,21 @@ TEST(MatrixTests, CompoundSubtraction) {
     EXPECT_EQ(a.arr[1][1], 1);
 }
 
+TEST(MatrixTests, CompoundMultiplication) {
+    Matrix a;
+    Matrix b;
+
+    a.loadFromFile(MATRIX_A_FILE);
+    b.loadFromFile(MATRIX_B_FILE);
+
+    a *= b;
+
+    EXPECT_EQ(a.arr[0][0], 8);
+    EXPECT_EQ(a.arr[0][1], 11);
+    EXPECT_EQ(a.arr[1][0], 16);
+    EXPECT_EQ(a.arr[1][1], 27);
+}
+
 TEST(MatrixTests, Addition) {
     Matrix a;
     Matrix b;
@@ -106,4 +121,19 @@ TEST(MatrixTests, Subtraction) {
     EXPECT_EQ(c.arr[0][1], -3);
     EXPECT_EQ(c.arr[1][0], -1);
     EXPECT_EQ(c.arr[1][1], 1);
+}
+
+TEST(MatrixTests, Multiplication) {
+    Matrix a;
+    Matrix b;
+
+    a.loadFromFile(MATRIX_A_FILE);
+    b.loadFromFile(MATRIX_B_FILE);
+
+    Matrix c = a * b;
+
+    EXPECT_EQ(c.arr[0][0], 8);
+    EXPECT_EQ(c.arr[0][1], 11);
+    EXPECT_EQ(c.arr[1][0], 16);
+    EXPECT_EQ(c.arr[1][1], 27);
 }

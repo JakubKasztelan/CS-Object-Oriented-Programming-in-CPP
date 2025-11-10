@@ -24,25 +24,26 @@ Matrix::Matrix(const Matrix& other) {
 }
 
 Matrix& Matrix::operator=(const Matrix& other) {
-    rows = other.rows;
-    columns = other.columns;
-
-    if (this->arr != nullptr) {
-        for (int i = 0; i < rows; i++) {
-            delete [] arr[i];
-        }
-        delete [] arr;
+    if (this == &other) {
+        return *this;
     }
 
-    if (this->referenceCounter != nullptr) {
-        referenceCounter--;
+    if (referenceCounter != nullptr) {
+        (*referenceCounter)--;
+        if (*referenceCounter == 0) {
+            for (int i = 0; i < rows; i++) {
+                delete [] arr[i];
+            }
+            delete [] arr;
+            delete referenceCounter;
+        }
     }
 
     arr = other.arr;
+    rows = other.rows;
+    columns = other.columns;
     referenceCounter = other.referenceCounter;
     (*referenceCounter)++;
-
-    return *this;
 }
 
 Matrix::~Matrix() {
@@ -82,6 +83,15 @@ Matrix& Matrix::operator+=(const Matrix &other) {
     return *this;
 }
 
+Matrix& Matrix::operator+=(double number) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            arr[i][j] += number;
+        }
+    }
+}
+
+
 Matrix& Matrix::operator-=(const Matrix &other) {
     if (rows != other.rows || columns != other.columns) {
         std::cout << "Size mismatch\n";
@@ -94,6 +104,44 @@ Matrix& Matrix::operator-=(const Matrix &other) {
     }
 
     return *this;
+}
+
+Matrix& Matrix::operator-=(double number) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            arr[i][j] -= number;
+        }
+    }
+}
+
+
+Matrix& Matrix::operator*=(const Matrix& other) {
+    if (columns != other.rows) {
+        std::cout << "Size mismatch\n";
+        return *this;
+    }
+
+    Matrix temp(rows, other.columns);
+
+    for (int i = 0; i < temp.rows; i++) {
+        for (int j = 0; j < temp.columns; j++) {
+            temp.arr[i][j] = 0;
+            for (int k = 0; k < columns; k++) {
+                temp.arr[i][j] += arr[i][k] * other.arr[k][j];
+            }
+        }
+    }
+
+    *this = temp;
+    return *this;
+}
+
+Matrix& Matrix::operator*=(double number) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            arr[i][j] *= number;
+        }
+    }
 }
 
 
@@ -114,23 +162,11 @@ bool Matrix::operator==(const Matrix& other) const{
 }
 
 bool Matrix::operator!=(const Matrix& other) const{
-    if (this->rows != other.rows || this->columns != other.columns) {
-        return false;
-    }
-
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < columns; j++) {
-            if (this->arr[i][j] == other.arr[i][j]) {
-                return false;
-            }
-        }
-    }
-
-    return true;
+    return !(*this == other);
 }
 
 
-Matrix operator+(const Matrix &a, const Matrix &b) {
+Matrix operator+(const Matrix& a, const Matrix& b) {
     if (a.rows != b.rows || a.columns != b.columns) {
         std::cout << "Size mismatch\n";
     }
@@ -146,7 +182,32 @@ Matrix operator+(const Matrix &a, const Matrix &b) {
     return c;
 }
 
-Matrix operator-(const Matrix &a, const Matrix &b) {
+Matrix operator+(const Matrix& a, double number) {
+    Matrix c(a.rows, a.columns);
+
+    for (int i = 0; i < c.rows; i++) {
+        for (int j = 0; j < c.columns; j++) {
+            c.arr[i][j] = a.arr[i][j] + number;
+        }
+    }
+
+    return c;
+}
+
+Matrix operator+(double number, const Matrix& a) {
+    Matrix c(a.rows, a.columns);
+
+    for (int i = 0; i < c.rows; i++) {
+        for (int j = 0; j < c.columns; j++) {
+            c.arr[i][j] = a.arr[i][j] + number;
+        }
+    }
+
+    return c;
+}
+
+
+Matrix operator-(const Matrix& a, const Matrix& b) {
     if (a.rows != b.rows || a.columns != b.columns) {
         std::cout << "Size mismatch\n";
     }
@@ -162,6 +223,74 @@ Matrix operator-(const Matrix &a, const Matrix &b) {
     return c;
 }
 
+Matrix operator-(const Matrix& a, double number) {
+    Matrix c(a.rows, a.columns);
+
+    for (int i = 0; i < c.rows; i++) {
+        for (int j = 0; j < c.columns; j++) {
+            c.arr[i][j] = a.arr[i][j] - number;
+        }
+    }
+
+    return c;
+}
+
+Matrix operator-(double number, const Matrix& a) {
+    Matrix c(a.rows, a.columns);
+
+    for (int i = 0; i < c.rows; i++) {
+        for (int j = 0; j < c.columns; j++) {
+            c.arr[i][j] = a.arr[i][j] - number;
+        }
+    }
+
+    return c;
+}
+
+
+Matrix operator*(const Matrix& a, const Matrix& b) {
+    if (a.columns != b.rows) {
+        std::cout << "Size mismatch\n";
+        return Matrix(0, 0);
+    }
+
+    Matrix c(a.rows, b.columns);
+
+    for (int i = 0; i < c.rows; i++) {
+        for (int j = 0; j < c.columns; j++) {
+            c.arr[i][j] = 0;
+            for (int k = 0; k < a.columns; k++) {
+                c.arr[i][j] += a.arr[i][k] * b.arr[k][j];
+            }
+        }
+    }
+
+    return c;
+}
+
+Matrix operator*(const Matrix& a, double number) {
+    Matrix c(a.rows, a.columns);
+
+    for (int i = 0; i < a.rows; i++) {
+        for (int j = 0; j < a.columns; j++) {
+            c.arr[i][j] = a.arr[i][j] * number;
+        }
+    }
+
+    return c;
+}
+
+Matrix operator*(double number, const Matrix& a) {
+    Matrix c(a.rows, a.columns);
+
+    for (int i = 0; i < a.rows; i++) {
+        for (int j = 0; j < a.columns; j++) {
+            c.arr[i][j] = a.arr[i][j] * number;
+        }
+    }
+
+    return c;
+}
 
 
 std::istream& operator>>(std::istream& is, Matrix& matrix) {
