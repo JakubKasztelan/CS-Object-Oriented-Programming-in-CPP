@@ -1,5 +1,7 @@
 #include "Matrix.h"
 
+#include <iostream>
+
 #define INITIAL_ROWS 10
 #define INITIAL_COLUMNS 10
 
@@ -64,13 +66,14 @@ Matrix::~Matrix() {
     delete referenceCounter;
 }
 
+
 bool Matrix::operator==(const Matrix& other) const{
     if (this->sizeRow != other.sizeRow || this->sizeCol != other.sizeCol) {
         return false;
     }
 
     for (int i = 0; i < sizeRow; i++) {
-        for (int j = 0; i < sizeCol; j++) {
+        for (int j = 0; j < sizeCol; j++) {
             if (this->arr[i][j] != other.arr[i][j]) {
                 return false;
             }
@@ -78,4 +81,58 @@ bool Matrix::operator==(const Matrix& other) const{
     }
 
     return true;
+}
+
+
+std::istream& operator>>(std::istream& is, Matrix& matrix) {
+    int rows, columns;
+
+    if (!(is >> rows >> columns)) {
+        std::cout << "Failed to load matrix dimensions\n";
+    }
+
+    if (rows <= 0 || columns <= 0) {
+        std::cout << "Invalid matrix dimensions\n";
+    }
+
+    if (matrix.arr) {
+        if (--(*matrix.referenceCounter) == 0) {
+            for (int i = 0; i < matrix.capacityRow; i++) {
+                delete [] matrix.arr[i];
+            }
+            delete [] matrix.arr;
+            delete matrix.referenceCounter;
+        }
+        matrix.arr = nullptr;
+        matrix.referenceCounter = nullptr;
+    }
+
+    matrix.capacityRow = rows;
+    matrix.sizeRow = rows;
+    matrix.capacityCol = columns;
+    matrix.sizeCol = columns;
+    matrix.arr = new double*[matrix.sizeRow];
+    for (int i = 0; i < matrix.sizeRow; i++) {
+        matrix.arr[i] = new double[matrix.sizeCol];
+    }
+    matrix.referenceCounter = new int(1);
+
+    for (int i = 0; i < matrix.sizeRow; i++) {
+        for (int j = 0; j < matrix.sizeCol; j++) {
+            if (!(is >> matrix.arr[i][j])) {
+                std::cout << "Invalid or incomplete matrix data\n";
+            }
+        }
+    }
+    return is;
+}
+
+std::ostream& operator<<(std::ostream& os, const Matrix& matrix) {
+    for (int i = 0; i < matrix.sizeRow; i++) {
+        for (int j = 0; j < matrix.sizeCol; j++) {
+            os << matrix.arr[i][j] << " ";
+        }
+        os << "\n";
+    }
+    return os;
 }
