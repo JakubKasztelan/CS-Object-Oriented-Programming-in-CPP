@@ -15,7 +15,9 @@ include(GoogleTest)
 
 add_executable(Matrix
         Matrix.cpp
-        TestMatrix.cpp)
+        TestMatrix.cpp
+        TestMatrixArithmetic.cpp
+        TestMatrixComparison.cpp)
 
 target_link_libraries(Matrix PRIVATE
         GTest::gtest_main
