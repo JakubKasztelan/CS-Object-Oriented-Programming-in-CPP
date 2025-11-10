@@ -20,6 +20,7 @@ TEST(MatrixTestsComparison, EqualityFalse) {
     EXPECT_FALSE(a == b);
 }
 
+
 TEST(MatrixTestsComparison, InequalityTrue) {
     Matrix a, b;
     a.loadFromFile(MATRIX_A_FILE);

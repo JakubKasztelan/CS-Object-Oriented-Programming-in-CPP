@@ -42,6 +42,7 @@ TEST(MatrixTestsArithmetic, CompoundAdditionNumber) {
     EXPECT_EQ(a.arr[1][1], 9.3);
 }
 
+
 TEST(MatrixTestsArithmetic, CompoundSubtractionMatrix) {
     Matrix a;
     Matrix b;
@@ -70,6 +71,7 @@ TEST(MatrixTestsArithmetic, CompoundSubtractionNumber) {
     EXPECT_EQ(a.arr[1][0], 0.5);
     EXPECT_EQ(a.arr[1][1], 1.5);
 }
+
 
 TEST(MatrixTestsArithmetic, CompoundMultiplicationMatrix) {
     Matrix a;
@@ -100,6 +102,7 @@ TEST(MatrixTestsArithmetic, CompoundMultiplicationNumber) {
     EXPECT_EQ(a.arr[1][1], 8);
 }
 
+
 TEST(MatrixTestsArithmetic, AdditionMatrix) {
     Matrix a;
     Matrix b;
@@ -129,6 +132,7 @@ TEST(MatrixTestsArithmetic, AdditionNumber) {
     EXPECT_EQ(c.arr[1][1], 7);
 }
 
+
 TEST(MatrixTestsArithmetic, SubtractionMatrix) {
     Matrix a;
     Matrix b;
@@ -157,6 +161,7 @@ TEST(MatrixTestsArithmetic, SubtractionNumber) {
     EXPECT_EQ(c.arr[1][0], 2);
     EXPECT_EQ(c.arr[1][1], 3);
 }
+
 
 TEST(MatrixTestsArithmetic, MultiplicationMatrix) {
     Matrix a;

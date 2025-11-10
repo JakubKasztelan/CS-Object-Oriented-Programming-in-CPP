@@ -15,3 +15,13 @@
 669	1182	1762806920269373645	Matrix	35f671e9a7e6f913
 669	1182	1762806920269373645	Matrix[1]_tests.cmake	35f671e9a7e6f913
 669	1182	1762806920269373645	/Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/Matrix[1]_tests.cmake	35f671e9a7e6f913
+7	712	1762807068847213530	CMakeFiles/Matrix.dir/TestMatrixComparison.cpp.o	9f428c42cc831cc9
+7	719	1762807068846801448	CMakeFiles/Matrix.dir/TestMatrix.cpp.o	82f85c22ce8aa2a2
+719	1234	1762807070072572400	Matrix	35f671e9a7e6f913
+719	1234	1762807070072572400	Matrix[1]_tests.cmake	35f671e9a7e6f913
+719	1234	1762807070072572400	/Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/Matrix[1]_tests.cmake	35f671e9a7e6f913
+4	626	1762807152151932616	CMakeFiles/Matrix.dir/TestMatrixComparison.cpp.o	9f428c42cc831cc9
+3	655	1762807152151497867	CMakeFiles/Matrix.dir/TestMatrixArithmetic.cpp.o	8265134e605bcf72
+655	1160	1762807153306177862	Matrix	35f671e9a7e6f913
+655	1160	1762807153306177862	Matrix[1]_tests.cmake	35f671e9a7e6f913
+655	1160	1762807153306177862	/Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/Matrix[1]_tests.cmake	35f671e9a7e6f913
