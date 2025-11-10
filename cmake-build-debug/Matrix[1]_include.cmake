@@ -1,0 +1,5 @@
+if(EXISTS "/Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/Matrix[1]_tests.cmake")
+  include("/Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/Matrix[1]_tests.cmake")
+else()
+  add_test(Matrix_NOT_BUILT Matrix_NOT_BUILT)
+endif()
