@@ -186,127 +186,58 @@ bool Matrix::operator!=(const Matrix& other) const{
 
 
 Matrix operator+(const Matrix& a, const Matrix& b) {
-    if (a.rows != b.rows || a.columns != b.columns) {
-        throw SizeException("Matrix size mismatch");
-    }
-
-    Matrix c(a.rows, a.columns);
-
-    for (int i = 0; i < c.rows; i++) {
-        for (int j = 0; j < c.columns; j++) {
-            c.arr[i][j] = a.arr[i][j] + b.arr[i][j];
-        }
-    }
-
+    Matrix c = a;
+    c += b;
     return c;
 }
 
 Matrix operator+(const Matrix& a, double number) {
-    Matrix c(a.rows, a.columns);
-
-    for (int i = 0; i < c.rows; i++) {
-        for (int j = 0; j < c.columns; j++) {
-            c.arr[i][j] = a.arr[i][j] + number;
-        }
-    }
-
+    Matrix c = a;
+    c += number;
     return c;
 }
 
 Matrix operator+(double number, const Matrix& a) {
-    Matrix c(a.rows, a.columns);
-
-    for (int i = 0; i < c.rows; i++) {
-        for (int j = 0; j < c.columns; j++) {
-            c.arr[i][j] = a.arr[i][j] + number;
-        }
-    }
-
+    Matrix c = a;
+   c += number;
     return c;
 }
 
 
 Matrix operator-(const Matrix& a, const Matrix& b) {
-    if (a.rows != b.rows || a.columns != b.columns) {
-        throw SizeException("Matrix size mismatch");
-    }
-
-    Matrix c(a.rows, a.columns);
-
-    for (int i = 0; i < c.rows; i++) {
-        for (int j = 0; j < c.columns; j++) {
-            c.arr[i][j] = a.arr[i][j] - b.arr[i][j];
-        }
-    }
-
+    Matrix c = a;
+    c -= b;
     return c;
 }
 
 Matrix operator-(const Matrix& a, double number) {
-    Matrix c(a.rows, a.columns);
-
-    for (int i = 0; i < c.rows; i++) {
-        for (int j = 0; j < c.columns; j++) {
-            c.arr[i][j] = a.arr[i][j] - number;
-        }
-    }
-
+    Matrix c = a;
+    c -= number;
     return c;
 }
 
 Matrix operator-(double number, const Matrix& a) {
-    Matrix c(a.rows, a.columns);
-
-    for (int i = 0; i < c.rows; i++) {
-        for (int j = 0; j < c.columns; j++) {
-            c.arr[i][j] = a.arr[i][j] - number;
-        }
-    }
-
+    Matrix c = a;
+    c -= number;
     return c;
 }
 
 
 Matrix operator*(const Matrix& a, const Matrix& b) {
-    if (a.columns != b.rows) {
-        throw SizeException("Matrix size mismatch");
-    }
-
-    Matrix c(a.rows, b.columns);
-
-    for (int i = 0; i < c.rows; i++) {
-        for (int j = 0; j < c.columns; j++) {
-            c.arr[i][j] = 0;
-            for (int k = 0; k < a.columns; k++) {
-                c.arr[i][j] += a.arr[i][k] * b.arr[k][j];
-            }
-        }
-    }
-
+    Matrix c = a;
+    c *= b;
     return c;
 }
 
 Matrix operator*(const Matrix& a, double number) {
-    Matrix c(a.rows, a.columns);
-
-    for (int i = 0; i < a.rows; i++) {
-        for (int j = 0; j < a.columns; j++) {
-            c.arr[i][j] = a.arr[i][j] * number;
-        }
-    }
-
+    Matrix c = a;
+    c *= number;
     return c;
 }
 
 Matrix operator*(double number, const Matrix& a) {
-    Matrix c(a.rows, a.columns);
-
-    for (int i = 0; i < a.rows; i++) {
-        for (int j = 0; j < a.columns; j++) {
-            c.arr[i][j] = a.arr[i][j] * number;
-        }
-    }
-
+    Matrix c = a;
+    c *= number;
     return c;
 }
 
