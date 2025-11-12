@@ -71,6 +71,15 @@ void Matrix::loadFromFile(std::string filepath) {
 }
 
 
+double Matrix::operator()(int row, int column) const {
+    return arr[row][column];
+}
+
+double &Matrix::operator()(int row, int column) {
+    return arr[row][column];
+}
+
+
 Matrix& Matrix::operator+=(const Matrix &other) {
     if (rows != other.rows || columns != other.columns) {
         std::cout << "Size mismatch\n";

@@ -40,3 +40,15 @@ TEST(MatrixTests, StreamInsertion) {
 
     EXPECT_EQ(sstream.str(), "1 2 \n3 4 \n");
 }
+
+TEST(MatrixTests, SingleElementAccess) {
+    Matrix a;
+
+    a.loadFromFile(MATRIX_A_FILE);
+
+    EXPECT_EQ(a(0, 0), 1);
+
+    a(0,0) = 5;
+
+    EXPECT_EQ(a(0, 0), 5);
+}

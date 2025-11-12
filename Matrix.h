@@ -18,6 +18,9 @@ public:
 
     void loadFromFile(std::string filepath);
 
+    double operator()(int row, int column) const;
+    double& operator()(int row, int column);
+
     Matrix& operator+=(const Matrix& other);
     Matrix& operator+=(double number);
 
