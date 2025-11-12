@@ -56,8 +56,8 @@ build CMakeFiles/Matrix.dir/Matrix.cpp.o: CXX_COMPILER__Matrix_unscanned_Debug /
   OBJECT_DIR = CMakeFiles/Matrix.dir
   OBJECT_FILE_DIR = CMakeFiles/Matrix.dir
 
-build CMakeFiles/Matrix.dir/TestMatrix.cpp.o: CXX_COMPILER__Matrix_unscanned_Debug /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/TestMatrix.cpp || cmake_object_order_depends_target_Matrix
-  DEP_FILE = CMakeFiles/Matrix.dir/TestMatrix.cpp.o.d
+build CMakeFiles/Matrix.dir/TestMatrixMain.cpp.o: CXX_COMPILER__Matrix_unscanned_Debug /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/TestMatrixMain.cpp || cmake_object_order_depends_target_Matrix
+  DEP_FILE = CMakeFiles/Matrix.dir/TestMatrixMain.cpp.o.d
   FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.0.sdk -fcolor-diagnostics
   INCLUDES = -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest/include -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = CMakeFiles/Matrix.dir
@@ -77,6 +77,20 @@ build CMakeFiles/Matrix.dir/TestMatrixComparison.cpp.o: CXX_COMPILER__Matrix_uns
   OBJECT_DIR = CMakeFiles/Matrix.dir
   OBJECT_FILE_DIR = CMakeFiles/Matrix.dir
 
+build CMakeFiles/Matrix.dir/MatrixExceptions.cpp.o: CXX_COMPILER__Matrix_unscanned_Debug /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/MatrixExceptions.cpp || cmake_object_order_depends_target_Matrix
+  DEP_FILE = CMakeFiles/Matrix.dir/MatrixExceptions.cpp.o.d
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.0.sdk -fcolor-diagnostics
+  INCLUDES = -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest/include -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest
+  OBJECT_DIR = CMakeFiles/Matrix.dir
+  OBJECT_FILE_DIR = CMakeFiles/Matrix.dir
+
+build CMakeFiles/Matrix.dir/TestMatrixExceptions.cpp.o: CXX_COMPILER__Matrix_unscanned_Debug /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/TestMatrixExceptions.cpp || cmake_object_order_depends_target_Matrix
+  DEP_FILE = CMakeFiles/Matrix.dir/TestMatrixExceptions.cpp.o.d
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.0.sdk -fcolor-diagnostics
+  INCLUDES = -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest/include -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest
+  OBJECT_DIR = CMakeFiles/Matrix.dir
+  OBJECT_FILE_DIR = CMakeFiles/Matrix.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Matrix
@@ -85,7 +99,7 @@ build CMakeFiles/Matrix.dir/TestMatrixComparison.cpp.o: CXX_COMPILER__Matrix_uns
 #############################################
 # Link the executable Matrix
 
-build Matrix Matrix[1]_tests.cmake | ${cmake_ninja_workdir}Matrix[1]_tests.cmake: CXX_EXECUTABLE_LINKER__Matrix_Debug CMakeFiles/Matrix.dir/Matrix.cpp.o CMakeFiles/Matrix.dir/TestMatrix.cpp.o CMakeFiles/Matrix.dir/TestMatrixArithmetic.cpp.o CMakeFiles/Matrix.dir/TestMatrixComparison.cpp.o | lib/libgtest_main.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a
+build Matrix Matrix[1]_tests.cmake | ${cmake_ninja_workdir}Matrix[1]_tests.cmake: CXX_EXECUTABLE_LINKER__Matrix_Debug CMakeFiles/Matrix.dir/Matrix.cpp.o CMakeFiles/Matrix.dir/TestMatrixMain.cpp.o CMakeFiles/Matrix.dir/TestMatrixArithmetic.cpp.o CMakeFiles/Matrix.dir/TestMatrixComparison.cpp.o CMakeFiles/Matrix.dir/MatrixExceptions.cpp.o CMakeFiles/Matrix.dir/TestMatrixExceptions.cpp.o | lib/libgtest_main.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.0.sdk
   LINK_LIBRARIES = lib/libgtest_main.a  lib/libgtest.a
   OBJECT_DIR = CMakeFiles/Matrix.dir

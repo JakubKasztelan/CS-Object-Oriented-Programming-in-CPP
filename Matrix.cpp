@@ -1,4 +1,5 @@
 #include "Matrix.h"
+#include "MatrixExceptions.h"
 
 #include <iostream>
 #include <fstream>
@@ -65,7 +66,9 @@ Matrix::~Matrix() {
 void Matrix::loadFromFile(std::string filepath) {
     std::ifstream file(filepath);
 
-    // Add exception here
+    if (!file) {
+        throw FileReadException("Error loading the file");
+    }
 
     file >> *this;
 }
@@ -82,7 +85,7 @@ double &Matrix::operator()(int row, int column) {
 
 Matrix& Matrix::operator+=(const Matrix &other) {
     if (rows != other.rows || columns != other.columns) {
-        std::cout << "Size mismatch\n";
+        throw SizeException("Matrix size mismatch");
     }
 
     for (int i = 0; i < rows; i++) {
@@ -107,7 +110,7 @@ Matrix& Matrix::operator+=(double number) {
 
 Matrix& Matrix::operator-=(const Matrix &other) {
     if (rows != other.rows || columns != other.columns) {
-        std::cout << "Size mismatch\n";
+        throw SizeException("Matrix size mismatch");
     }
 
     for (int i = 0; i < rows; i++) {
@@ -132,8 +135,7 @@ Matrix& Matrix::operator-=(double number) {
 
 Matrix& Matrix::operator*=(const Matrix& other) {
     if (columns != other.rows) {
-        std::cout << "Size mismatch\n";
-        return *this;
+        throw SizeException("Matrix size mismatch");
     }
 
     Matrix temp(rows, other.columns);
@@ -185,7 +187,7 @@ bool Matrix::operator!=(const Matrix& other) const{
 
 Matrix operator+(const Matrix& a, const Matrix& b) {
     if (a.rows != b.rows || a.columns != b.columns) {
-        std::cout << "Size mismatch\n";
+        throw SizeException("Matrix size mismatch");
     }
 
     Matrix c(a.rows, a.columns);
@@ -226,7 +228,7 @@ Matrix operator+(double number, const Matrix& a) {
 
 Matrix operator-(const Matrix& a, const Matrix& b) {
     if (a.rows != b.rows || a.columns != b.columns) {
-        std::cout << "Size mismatch\n";
+        throw SizeException("Matrix size mismatch");
     }
 
     Matrix c(a.rows, a.columns);
@@ -267,8 +269,7 @@ Matrix operator-(double number, const Matrix& a) {
 
 Matrix operator*(const Matrix& a, const Matrix& b) {
     if (a.columns != b.rows) {
-        std::cout << "Size mismatch\n";
-        return Matrix(0, 0);
+        throw SizeException("Matrix size mismatch");
     }
 
     Matrix c(a.rows, b.columns);
@@ -314,11 +315,11 @@ std::istream& operator>>(std::istream& is, Matrix& matrix) {
     int rows, columns;
 
     if (!(is >> rows >> columns)) {
-        std::cout << "Failed to load matrix dimensions\n";
+        throw MatrixReadException("Failed to load matrix dimensions");
     }
 
     if (rows <= 0 || columns <= 0) {
-        std::cout << "Invalid matrix dimensions\n";
+        throw SizeException("Invalid matrix dimensions");
     }
 
     if (matrix.arr) {
@@ -344,7 +345,7 @@ std::istream& operator>>(std::istream& is, Matrix& matrix) {
     for (int i = 0; i < matrix.rows; i++) {
         for (int j = 0; j < matrix.columns; j++) {
             if (!(is >> matrix.arr[i][j])) {
-                std::cout << "Read error\n";
+                throw MatrixReadException("Error reading the matrix");
             }
         }
     }

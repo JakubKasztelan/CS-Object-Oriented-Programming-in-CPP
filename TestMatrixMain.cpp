@@ -6,11 +6,11 @@
 #define MATRIX_B_FILE "matrixB.txt"
 
 
-TEST(MatrixTests, Constructor) {
+TEST(MatrixTestsMain, Constructor) {
     Matrix matrix;
 }
 
-TEST(MatrixTests, CopyConstructor) {
+TEST(MatrixTestsMain, CopyConstructor) {
     Matrix a;
     Matrix b(a);
 
@@ -19,7 +19,7 @@ TEST(MatrixTests, CopyConstructor) {
     EXPECT_EQ(*(a.referenceCounter), 2);
 }
 
-TEST(MatrixTests, LoadFromFile) {
+TEST(MatrixTestsMain, LoadFromFile) {
     Matrix a;
 
     a.loadFromFile(MATRIX_A_FILE);
@@ -30,7 +30,7 @@ TEST(MatrixTests, LoadFromFile) {
     EXPECT_EQ(a.arr[1][1], 4);
 }
 
-TEST(MatrixTests, StreamInsertion) {
+TEST(MatrixTestsMain, StreamInsertion) {
     Matrix a;
 
     a.loadFromFile(MATRIX_A_FILE);
@@ -41,7 +41,7 @@ TEST(MatrixTests, StreamInsertion) {
     EXPECT_EQ(sstream.str(), "1 2 \n3 4 \n");
 }
 
-TEST(MatrixTests, SingleElementAccess) {
+TEST(MatrixTestsMain, SingleElementAccess) {
     Matrix a;
 
     a.loadFromFile(MATRIX_A_FILE);
