@@ -15,10 +15,10 @@ include(GoogleTest)
 
 add_executable(Matrix
         Matrix.cpp
+        MatrixExceptions.cpp
         TestMatrixMain.cpp
         TestMatrixArithmetic.cpp
         TestMatrixComparison.cpp
-        MatrixExceptions.cpp
         TestMatrixExceptions.cpp)
 
 target_link_libraries(Matrix PRIVATE
