@@ -12,11 +12,54 @@ TEST(MatrixTestsMain, Constructor) {
 
 TEST(MatrixTestsMain, CopyConstructor) {
     Matrix a;
+    a.loadFromFile(MATRIX_A_FILE);
+
     Matrix b(a);
 
     EXPECT_EQ(a.arr, b.arr);
     EXPECT_EQ(a.referenceCounter, b.referenceCounter);
     EXPECT_EQ(*(a.referenceCounter), 2);
+    EXPECT_EQ(b.arr[0][0], a.arr[0][0]);
+    EXPECT_EQ(b.arr[0][1], a.arr[0][1]);
+    EXPECT_EQ(b.arr[1][0], a.arr[1][0]);
+    EXPECT_EQ(b.arr[1][1], a.arr[1][1]);
+}
+
+TEST(MatrixTestsMain, CopyOperator) {
+    Matrix a;
+    a.loadFromFile(MATRIX_A_FILE);
+
+    Matrix b;
+    b = a;
+
+    EXPECT_EQ(a.arr, b.arr);
+    EXPECT_EQ(a.referenceCounter, b.referenceCounter);
+    EXPECT_EQ(*(a.referenceCounter), 2);
+    EXPECT_EQ(b.arr[0][0], a.arr[0][0]);
+    EXPECT_EQ(b.arr[0][1], a.arr[0][1]);
+    EXPECT_EQ(b.arr[1][0], a.arr[1][0]);
+    EXPECT_EQ(b.arr[1][1], a.arr[1][1]);
+}
+
+TEST(MatrixTestsMain, SelfAssignment) {
+    Matrix a;
+    a.loadFromFile(MATRIX_A_FILE);
+
+    a = a;
+
+    EXPECT_EQ(*(a.referenceCounter), 1);
+}
+
+TEST(MatrixTestsMain, DestructorDecrementsCounter) {
+    Matrix* a = new Matrix();
+    Matrix* b = new Matrix(*a);
+
+    EXPECT_EQ(*(a->referenceCounter), 2);
+
+    delete b;
+    EXPECT_EQ(*(a->referenceCounter), 1);
+
+    delete a;
 }
 
 TEST(MatrixTestsMain, LoadFromFile) {
