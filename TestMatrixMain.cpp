@@ -16,13 +16,12 @@ TEST(MatrixTestsMain, CopyConstructor) {
 
     Matrix b(a);
 
-    EXPECT_EQ(a.arr, b.arr);
-    EXPECT_EQ(a.referenceCounter, b.referenceCounter);
-    EXPECT_EQ(*(a.referenceCounter), 2);
-    EXPECT_EQ(b.arr[0][0], a.arr[0][0]);
-    EXPECT_EQ(b.arr[0][1], a.arr[0][1]);
-    EXPECT_EQ(b.arr[1][0], a.arr[1][0]);
-    EXPECT_EQ(b.arr[1][1], a.arr[1][1]);
+    EXPECT_EQ(a.getReferenceCounter(), b.getReferenceCounter());
+    EXPECT_EQ(a.getReferenceCounter(), 2);
+    EXPECT_EQ(b(0, 0), a(0, 0));
+    EXPECT_EQ(b(0, 1), a(0, 1));
+    EXPECT_EQ(b(1, 0), a(1, 0));
+    EXPECT_EQ(b(1, 1), a(1, 1));
 }
 
 TEST(MatrixTestsMain, CopyOperator) {
@@ -32,13 +31,12 @@ TEST(MatrixTestsMain, CopyOperator) {
     Matrix b;
     b = a;
 
-    EXPECT_EQ(a.arr, b.arr);
-    EXPECT_EQ(a.referenceCounter, b.referenceCounter);
-    EXPECT_EQ(*(a.referenceCounter), 2);
-    EXPECT_EQ(b.arr[0][0], a.arr[0][0]);
-    EXPECT_EQ(b.arr[0][1], a.arr[0][1]);
-    EXPECT_EQ(b.arr[1][0], a.arr[1][0]);
-    EXPECT_EQ(b.arr[1][1], a.arr[1][1]);
+    EXPECT_EQ(a.getReferenceCounter(), b.getReferenceCounter());
+    EXPECT_EQ(a.getReferenceCounter(), 2);
+    EXPECT_EQ(b(0, 0), a(0, 0));
+    EXPECT_EQ(b(0, 1), a(0, 1));
+    EXPECT_EQ(b(1, 0), a(1, 0));
+    EXPECT_EQ(b(1, 1), a(1, 1));
 }
 
 TEST(MatrixTestsMain, SelfAssignment) {
@@ -47,17 +45,17 @@ TEST(MatrixTestsMain, SelfAssignment) {
 
     a = a;
 
-    EXPECT_EQ(*(a.referenceCounter), 1);
+    EXPECT_EQ(a.getReferenceCounter(), 1);
 }
 
 TEST(MatrixTestsMain, DestructorDecrementsCounter) {
     Matrix* a = new Matrix();
     Matrix* b = new Matrix(*a);
 
-    EXPECT_EQ(*(a->referenceCounter), 2);
+    EXPECT_EQ(a->getReferenceCounter(), 2);
 
     delete b;
-    EXPECT_EQ(*(a->referenceCounter), 1);
+    EXPECT_EQ(a->getReferenceCounter(), 1);
 
     delete a;
 }
@@ -67,10 +65,10 @@ TEST(MatrixTestsMain, LoadFromFile) {
 
     a.loadFromFile(MATRIX_A_FILE);
 
-    EXPECT_EQ(a.arr[0][0], 1);
-    EXPECT_EQ(a.arr[0][1], 2);
-    EXPECT_EQ(a.arr[1][0], 3);
-    EXPECT_EQ(a.arr[1][1], 4);
+    EXPECT_EQ(a(0, 0), 1);
+    EXPECT_EQ(a(0, 1), 2);
+    EXPECT_EQ(a(1, 0), 3);
+    EXPECT_EQ(a(1, 1), 4);
 }
 
 TEST(MatrixTestsMain, StreamInsertion) {

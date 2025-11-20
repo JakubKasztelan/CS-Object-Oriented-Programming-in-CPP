@@ -184,6 +184,9 @@ bool Matrix::operator!=(const Matrix& other) const{
     return !(*this == other);
 }
 
+int Matrix::getReferenceCounter() const{
+    return *referenceCounter;
+}
 
 Matrix operator+(const Matrix& a, const Matrix& b) {
     Matrix c = a;

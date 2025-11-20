@@ -22,10 +22,10 @@ TEST(MatrixTestsArithmetic, CompoundAdditionMatrix) {
 
     a += b;
 
-    EXPECT_EQ(a.arr[0][0], 1);
-    EXPECT_EQ(a.arr[0][1], 7);
-    EXPECT_EQ(a.arr[1][0], 7);
-    EXPECT_EQ(a.arr[1][1], 7);
+    EXPECT_EQ(a(0, 0), 1);
+    EXPECT_EQ(a(0, 1), 7);
+    EXPECT_EQ(a(1, 0), 7);
+    EXPECT_EQ(a(1, 1), 7);
 }
 
 TEST(MatrixTestsArithmetic, CompoundAdditionNumber) {
@@ -36,10 +36,10 @@ TEST(MatrixTestsArithmetic, CompoundAdditionNumber) {
 
     a += number;
 
-    EXPECT_EQ(a.arr[0][0], 6.3);
-    EXPECT_EQ(a.arr[0][1], 7.3);
-    EXPECT_EQ(a.arr[1][0], 8.3);
-    EXPECT_EQ(a.arr[1][1], 9.3);
+    EXPECT_EQ(a(0, 0), 6.3);
+    EXPECT_EQ(a(0, 1), 7.3);
+    EXPECT_EQ(a(1, 0), 8.3);
+    EXPECT_EQ(a(1, 1), 9.3);
 }
 
 
@@ -52,10 +52,10 @@ TEST(MatrixTestsArithmetic, CompoundSubtractionMatrix) {
 
     a -= b;
 
-    EXPECT_EQ(a.arr[0][0], 1);
-    EXPECT_EQ(a.arr[0][1], -3);
-    EXPECT_EQ(a.arr[1][0], -1);
-    EXPECT_EQ(a.arr[1][1], 1);
+    EXPECT_EQ(a(0, 0), 1);
+    EXPECT_EQ(a(0, 1), -3);
+    EXPECT_EQ(a(1, 0), -1);
+    EXPECT_EQ(a(1, 1), 1);
 }
 
 TEST(MatrixTestsArithmetic, CompoundSubtractionNumber) {
@@ -66,10 +66,10 @@ TEST(MatrixTestsArithmetic, CompoundSubtractionNumber) {
 
     a -= number;
 
-    EXPECT_EQ(a.arr[0][0], -1.5);
-    EXPECT_EQ(a.arr[0][1], -0.5);
-    EXPECT_EQ(a.arr[1][0], 0.5);
-    EXPECT_EQ(a.arr[1][1], 1.5);
+    EXPECT_EQ(a(0, 0), -1.5);
+    EXPECT_EQ(a(0, 1), -0.5);
+    EXPECT_EQ(a(1, 0), 0.5);
+    EXPECT_EQ(a(1, 1), 1.5);
 }
 
 
@@ -82,10 +82,10 @@ TEST(MatrixTestsArithmetic, CompoundMultiplicationMatrix) {
 
     a *= b;
 
-    EXPECT_EQ(a.arr[0][0], 8);
-    EXPECT_EQ(a.arr[0][1], 11);
-    EXPECT_EQ(a.arr[1][0], 16);
-    EXPECT_EQ(a.arr[1][1], 27);
+    EXPECT_EQ(a(0, 0), 8);
+    EXPECT_EQ(a(0, 1), 11);
+    EXPECT_EQ(a(1, 0), 16);
+    EXPECT_EQ(a(1, 1), 27);
 }
 
 TEST(MatrixTestsArithmetic, CompoundMultiplicationNumber) {
@@ -96,10 +96,10 @@ TEST(MatrixTestsArithmetic, CompoundMultiplicationNumber) {
 
     a *= number;
 
-    EXPECT_EQ(a.arr[0][0], 2);
-    EXPECT_EQ(a.arr[0][1], 4);
-    EXPECT_EQ(a.arr[1][0], 6);
-    EXPECT_EQ(a.arr[1][1], 8);
+    EXPECT_EQ(a(0, 0), 2);
+    EXPECT_EQ(a(0, 1), 4);
+    EXPECT_EQ(a(1, 0), 6);
+    EXPECT_EQ(a(1, 1), 8);
 }
 
 
@@ -112,10 +112,10 @@ TEST(MatrixTestsArithmetic, AdditionMatrix) {
 
     Matrix c = a + b;
 
-    EXPECT_EQ(c.arr[0][0], 1);
-    EXPECT_EQ(c.arr[0][1], 7);
-    EXPECT_EQ(c.arr[1][0], 7);
-    EXPECT_EQ(c.arr[1][1], 7);
+    EXPECT_EQ(c(0, 0), 1);
+    EXPECT_EQ(c(0, 1), 7);
+    EXPECT_EQ(c(1, 0), 7);
+    EXPECT_EQ(c(1, 1), 7);
 }
 
 TEST(MatrixTestsArithmetic, AdditionNumber) {
@@ -126,10 +126,10 @@ TEST(MatrixTestsArithmetic, AdditionNumber) {
 
     Matrix c = a + number;
 
-    EXPECT_EQ(c.arr[0][0], 4);
-    EXPECT_EQ(c.arr[0][1], 5);
-    EXPECT_EQ(c.arr[1][0], 6);
-    EXPECT_EQ(c.arr[1][1], 7);
+    EXPECT_EQ(c(0, 0), 4);
+    EXPECT_EQ(c(0, 1), 5);
+    EXPECT_EQ(c(1, 0), 6);
+    EXPECT_EQ(c(1, 1), 7);
 }
 
 
@@ -142,10 +142,10 @@ TEST(MatrixTestsArithmetic, SubtractionMatrix) {
 
     Matrix c = a - b;
 
-    EXPECT_EQ(c.arr[0][0], 1);
-    EXPECT_EQ(c.arr[0][1], -3);
-    EXPECT_EQ(c.arr[1][0], -1);
-    EXPECT_EQ(c.arr[1][1], 1);
+    EXPECT_EQ(c(0, 0), 1);
+    EXPECT_EQ(c(0, 1), -3);
+    EXPECT_EQ(c(1, 0), -1);
+    EXPECT_EQ(c(1, 1), 1);
 }
 
 TEST(MatrixTestsArithmetic, SubtractionNumber) {
@@ -156,10 +156,10 @@ TEST(MatrixTestsArithmetic, SubtractionNumber) {
 
     Matrix c = a - number;
 
-    EXPECT_EQ(c.arr[0][0], 0);
-    EXPECT_EQ(c.arr[0][1], 1);
-    EXPECT_EQ(c.arr[1][0], 2);
-    EXPECT_EQ(c.arr[1][1], 3);
+    EXPECT_EQ(c(0, 0), 0);
+    EXPECT_EQ(c(0, 1), 1);
+    EXPECT_EQ(c(1, 0), 2);
+    EXPECT_EQ(c(1, 1), 3);
 }
 
 
@@ -172,10 +172,10 @@ TEST(MatrixTestsArithmetic, MultiplicationMatrix) {
 
     Matrix c = a * b;
 
-    EXPECT_EQ(c.arr[0][0], 8);
-    EXPECT_EQ(c.arr[0][1], 11);
-    EXPECT_EQ(c.arr[1][0], 16);
-    EXPECT_EQ(c.arr[1][1], 27);
+    EXPECT_EQ(c(0, 0), 8);
+    EXPECT_EQ(c(0, 1), 11);
+    EXPECT_EQ(c(1, 0), 16);
+    EXPECT_EQ(c(1, 1), 27);
 }
 
 TEST(MatrixTestsArithmetic, MultiplicationNumber) {
@@ -186,8 +186,8 @@ TEST(MatrixTestsArithmetic, MultiplicationNumber) {
 
     Matrix c = a * number;
 
-    EXPECT_EQ(c.arr[0][0], 3);
-    EXPECT_EQ(c.arr[0][1], 6);
-    EXPECT_EQ(c.arr[1][0], 9);
-    EXPECT_EQ(c.arr[1][1], 12);
+    EXPECT_EQ(c(0, 0), 3);
+    EXPECT_EQ(c(0, 1), 6);
+    EXPECT_EQ(c(1, 0), 9);
+    EXPECT_EQ(c(1, 1), 12);
 }

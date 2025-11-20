@@ -4,13 +4,20 @@
 #include <ostream>
 #include <istream>
 
+/*
+double **arr;
+int rows;
+int columns;
+int *referenceCounter; Separate data struct shared (private) */
+
 class Matrix {
-public:
+private:
     double **arr;
     int rows;
     int columns;
     int *referenceCounter;
 
+public:
     Matrix(int rows = 0, int columns = 0);
     Matrix(const Matrix& other);
     Matrix& operator=(const Matrix& other);
@@ -32,6 +39,11 @@ public:
 
     bool operator==(const Matrix& other) const;
     bool operator!=(const Matrix& other) const;
+
+    int getReferenceCounter() const;
+
+    friend std::istream& operator>>(std::istream& is, Matrix& matrix);
+    friend std::ostream& operator<<(std::ostream& os, const Matrix& other);
 };
 
 Matrix operator+(const Matrix& a, const Matrix& b);
@@ -45,8 +57,5 @@ Matrix operator-(double number, const Matrix& b);
 Matrix operator*(const Matrix& a, const Matrix& b);
 Matrix operator*(const Matrix& a, double number);
 Matrix operator*(double number, const Matrix& b);
-
-std::istream& operator>>(std::istream& is, Matrix& matrix);
-std::ostream& operator<<(std::ostream& os, const Matrix& other);
 
 #endif
