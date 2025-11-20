@@ -8,6 +8,7 @@
 
 TEST(MatrixTestsMain, Constructor) {
     Matrix matrix;
+    EXPECT_EQ(matrix.getReferenceCounter(), 1);
 }
 
 TEST(MatrixTestsMain, CopyConstructor) {

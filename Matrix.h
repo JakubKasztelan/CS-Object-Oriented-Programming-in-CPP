@@ -4,18 +4,18 @@
 #include <ostream>
 #include <istream>
 
-/*
-double **arr;
-int rows;
-int columns;
-int *referenceCounter; Separate data struct shared (private) */
 
-class Matrix {
-private:
+typedef struct {
     double **arr;
     int rows;
     int columns;
-    int *referenceCounter;
+    int referenceCounter;
+} matrixData;
+
+
+class Matrix {
+private:
+    matrixData *data;
 
 public:
     Matrix(int rows = 0, int columns = 0);
