@@ -4,6 +4,25 @@
 #include <iostream>
 #include <fstream>
 
+matrixData* matrixData::detach() {
+    if (referenceCounter == 1) {
+        return this;
+    }
+    matrixData* newData = new matrixData();
+    newData->rows = this->rows;
+    newData->columns = this->columns;
+    newData->referenceCounter = 1;
+
+    newData->arr = new double*[rows];
+    for (int i = 0; i < newData->rows; i++) {
+        newData->arr[i] = new double[newData->columns];
+        for (int j = 0; j < newData->columns; j++) {
+            newData->arr[i][j] = this->arr[i][j];
+        }
+    }
+    return newData;
+}
+
 
 Matrix::Matrix(int rows, int columns) {
     this->data = new matrixData();
@@ -77,6 +96,7 @@ double Matrix::operator()(int row, int column) const {
 }
 
 double &Matrix::operator()(int row, int column) {
+    this->data = this->data->detach();
     return data->arr[row][column];
 }
 

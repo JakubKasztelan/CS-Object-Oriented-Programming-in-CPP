@@ -5,12 +5,14 @@
 #include <istream>
 
 
-typedef struct {
+struct matrixData {
     double **arr;
     int rows;
     int columns;
     int referenceCounter;
-} matrixData;
+
+    matrixData* detach();
+};
 
 
 class Matrix {
