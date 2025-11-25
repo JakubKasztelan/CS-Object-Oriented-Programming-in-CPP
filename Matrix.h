@@ -16,9 +16,6 @@ struct matrixData {
 
 
 class Matrix {
-private:
-    matrixData *data;
-
 public:
     Matrix(int rows = 0, int columns = 0);
     Matrix(const Matrix& other);
@@ -46,6 +43,10 @@ public:
 
     friend std::istream& operator>>(std::istream& is, Matrix& matrix);
     friend std::ostream& operator<<(std::ostream& os, const Matrix& other);
+
+private:
+    matrixData *data;
+
 };
 
 Matrix operator+(const Matrix& a, const Matrix& b);
