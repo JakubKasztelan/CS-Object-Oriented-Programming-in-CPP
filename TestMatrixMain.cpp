@@ -99,5 +99,7 @@ TEST(MatrixTestsMain, SingleElementAccess) {
     b(0, 0) = 1;
 
     EXPECT_EQ(a(0, 0), 5);
+    EXPECT_EQ(a.getReferenceCounter(), 1);
     EXPECT_EQ(b(0, 0), 1);
+    EXPECT_EQ(b.getReferenceCounter(), 1);
 }
