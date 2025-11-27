@@ -106,6 +106,12 @@ Matrix& Matrix::operator+=(const Matrix &other) {
         throw SizeException("Matrix size mismatch");
     }
 
+    if (data->referenceCounter > 1) {
+        matrixData* old = data;
+        data = data->detach();
+        old->referenceCounter--;
+    }
+
     for (int i = 0; i < data->rows; i++) {
         for (int j = 0; j < data->columns; j++) {
             data->arr[i][j] += other.data->arr[i][j];
@@ -116,6 +122,12 @@ Matrix& Matrix::operator+=(const Matrix &other) {
 }
 
 Matrix& Matrix::operator+=(double number) {
+    if (data->referenceCounter > 1) {
+        matrixData* old = data;
+        data = data->detach();
+        old->referenceCounter--;
+    }
+
     for (int i = 0; i < data->rows; i++) {
         for (int j = 0; j < data->columns; j++) {
             data->arr[i][j] += number;
@@ -131,6 +143,12 @@ Matrix& Matrix::operator-=(const Matrix &other) {
         throw SizeException("Matrix size mismatch");
     }
 
+    if (data->referenceCounter > 1) {
+        matrixData* old = data;
+        data = data->detach();
+        old->referenceCounter--;
+    }
+
     for (int i = 0; i < data->rows; i++) {
         for (int j = 0; j < data->columns; j++) {
             data->arr[i][j] -= other.data->arr[i][j];
@@ -141,6 +159,12 @@ Matrix& Matrix::operator-=(const Matrix &other) {
 }
 
 Matrix& Matrix::operator-=(double number) {
+    if (data->referenceCounter > 1) {
+        matrixData* old = data;
+        data = data->detach();
+        old->referenceCounter--;
+    }
+
     for (int i = 0; i < data->rows; i++) {
         for (int j = 0; j < data->columns; j++) {
             data->arr[i][j] -= number;
@@ -154,6 +178,12 @@ Matrix& Matrix::operator-=(double number) {
 Matrix& Matrix::operator*=(const Matrix& other) {
     if (data->columns != other.data->rows) {
         throw SizeException("Matrix size mismatch");
+    }
+
+    if (data->referenceCounter > 1) {
+        matrixData* old = data;
+        data = data->detach();
+        old->referenceCounter--;
     }
 
     Matrix temp(data->rows, other.data->columns);
@@ -172,6 +202,12 @@ Matrix& Matrix::operator*=(const Matrix& other) {
 }
 
 Matrix& Matrix::operator*=(double number) {
+    if (data->referenceCounter > 1) {
+        matrixData* old = data;
+        data = data->detach();
+        old->referenceCounter--;
+    }
+
     for (int i = 0; i < data->rows; i++) {
         for (int j = 0; j < data->columns; j++) {
             data->arr[i][j] *= number;
@@ -202,9 +238,11 @@ bool Matrix::operator!=(const Matrix& other) const{
     return !(*this == other);
 }
 
+
 int Matrix::getReferenceCounter() const{
     return data->referenceCounter;
 }
+
 
 Matrix operator+(const Matrix& a, const Matrix& b) {
     Matrix c = a;

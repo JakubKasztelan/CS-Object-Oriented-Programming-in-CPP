@@ -20,12 +20,19 @@ TEST(MatrixTestsArithmetic, CompoundAdditionMatrix) {
     a.loadFromFile(MATRIX_A_FILE);
     b.loadFromFile(MATRIX_B_FILE);
 
+    Matrix e = a;
+
     a += b;
 
     EXPECT_EQ(a(0, 0), 1);
     EXPECT_EQ(a(0, 1), 7);
     EXPECT_EQ(a(1, 0), 7);
     EXPECT_EQ(a(1, 1), 7);
+
+    EXPECT_EQ(e(0, 0), 1);
+    EXPECT_EQ(e(0, 1), 2);
+    EXPECT_EQ(e(1, 0), 3);
+    EXPECT_EQ(e(1, 1), 4);
 }
 
 TEST(MatrixTestsArithmetic, CompoundAdditionNumber) {
@@ -34,12 +41,19 @@ TEST(MatrixTestsArithmetic, CompoundAdditionNumber) {
 
     a.loadFromFile(MATRIX_A_FILE);
 
+    Matrix e = a;
+
     a += number;
 
     EXPECT_EQ(a(0, 0), 6.3);
     EXPECT_EQ(a(0, 1), 7.3);
     EXPECT_EQ(a(1, 0), 8.3);
     EXPECT_EQ(a(1, 1), 9.3);
+
+    EXPECT_EQ(e(0, 0), 1);
+    EXPECT_EQ(e(0, 1), 2);
+    EXPECT_EQ(e(1, 0), 3);
+    EXPECT_EQ(e(1, 1), 4);
 }
 
 
@@ -50,12 +64,19 @@ TEST(MatrixTestsArithmetic, CompoundSubtractionMatrix) {
     a.loadFromFile(MATRIX_A_FILE);
     b.loadFromFile(MATRIX_B_FILE);
 
+    Matrix e = a;
+
     a -= b;
 
     EXPECT_EQ(a(0, 0), 1);
     EXPECT_EQ(a(0, 1), -3);
     EXPECT_EQ(a(1, 0), -1);
     EXPECT_EQ(a(1, 1), 1);
+
+    EXPECT_EQ(e(0, 0), 1);
+    EXPECT_EQ(e(0, 1), 2);
+    EXPECT_EQ(e(1, 0), 3);
+    EXPECT_EQ(e(1, 1), 4);
 }
 
 TEST(MatrixTestsArithmetic, CompoundSubtractionNumber) {
@@ -64,12 +85,19 @@ TEST(MatrixTestsArithmetic, CompoundSubtractionNumber) {
 
     a.loadFromFile(MATRIX_A_FILE);
 
+    Matrix e = a;
+
     a -= number;
 
     EXPECT_EQ(a(0, 0), -1.5);
     EXPECT_EQ(a(0, 1), -0.5);
     EXPECT_EQ(a(1, 0), 0.5);
     EXPECT_EQ(a(1, 1), 1.5);
+
+    EXPECT_EQ(e(0, 0), 1);
+    EXPECT_EQ(e(0, 1), 2);
+    EXPECT_EQ(e(1, 0), 3);
+    EXPECT_EQ(e(1, 1), 4);
 }
 
 
@@ -80,12 +108,19 @@ TEST(MatrixTestsArithmetic, CompoundMultiplicationMatrix) {
     a.loadFromFile(MATRIX_A_FILE);
     b.loadFromFile(MATRIX_B_FILE);
 
+    Matrix e = a;
+
     a *= b;
 
     EXPECT_EQ(a(0, 0), 8);
     EXPECT_EQ(a(0, 1), 11);
     EXPECT_EQ(a(1, 0), 16);
     EXPECT_EQ(a(1, 1), 27);
+
+    EXPECT_EQ(e(0, 0), 1);
+    EXPECT_EQ(e(0, 1), 2);
+    EXPECT_EQ(e(1, 0), 3);
+    EXPECT_EQ(e(1, 1), 4);
 }
 
 TEST(MatrixTestsArithmetic, CompoundMultiplicationNumber) {
@@ -94,12 +129,19 @@ TEST(MatrixTestsArithmetic, CompoundMultiplicationNumber) {
 
     a.loadFromFile(MATRIX_A_FILE);
 
+    Matrix e = a;
+
     a *= number;
 
     EXPECT_EQ(a(0, 0), 2);
     EXPECT_EQ(a(0, 1), 4);
     EXPECT_EQ(a(1, 0), 6);
     EXPECT_EQ(a(1, 1), 8);
+
+    EXPECT_EQ(e(0, 0), 1);
+    EXPECT_EQ(e(0, 1), 2);
+    EXPECT_EQ(e(1, 0), 3);
+    EXPECT_EQ(e(1, 1), 4);
 }
 
 
