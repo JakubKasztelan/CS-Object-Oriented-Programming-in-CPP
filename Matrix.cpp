@@ -312,21 +312,24 @@ std::istream& operator>>(std::istream& is, Matrix& matrix) {
         throw SizeException("Invalid matrix dimensions");
     }
 
-    if (matrix.data->arr) {
-        if (--(matrix.data->referenceCounter) == 0) {
-            for (int i = 0; i < matrix.data->rows; i++) {
-                delete [] matrix.data->arr[i];
-            }
-            delete [] matrix.data->arr;
-            delete matrix.data;
-        }
-        matrix.data = new matrixData();
-        matrix.data->arr = nullptr;
-        matrix.data->referenceCounter = 0;
+    if (matrix.data->referenceCounter > 1) {
+        matrixData* old = matrix.data;
+        matrix.data = matrix.data->detach();
+        old->referenceCounter--;
     }
+
+    int oldRows = matrix.data->rows;
 
     matrix.data->rows = rows;
     matrix.data->columns = columns;
+
+    if (matrix.data->arr != nullptr) {
+        for (int i = 0; i < oldRows; i++) {
+            delete[] matrix.data->arr[i];
+        }
+        delete[] matrix.data->arr;
+    }
+
     matrix.data->arr = new double*[matrix.data->rows];
     for (int i = 0; i < matrix.data->rows; i++) {
         matrix.data->arr[i] = new double[matrix.data->columns];
