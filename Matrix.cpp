@@ -20,6 +20,8 @@ matrixData* matrixData::detach() {
             newData->arr[i][j] = this->arr[i][j];
         }
     }
+
+    referenceCounter--;
     return newData;
 }
 
@@ -109,7 +111,7 @@ Matrix& Matrix::operator+=(const Matrix &other) {
     if (data->referenceCounter > 1) {
         matrixData* old = data;
         data = data->detach();
-        old->referenceCounter--;
+        //old->referenceCounter--;
     }
 
     for (int i = 0; i < data->rows; i++) {
@@ -123,9 +125,7 @@ Matrix& Matrix::operator+=(const Matrix &other) {
 
 Matrix& Matrix::operator+=(double number) {
     if (data->referenceCounter > 1) {
-        matrixData* old = data;
         data = data->detach();
-        old->referenceCounter--;
     }
 
     for (int i = 0; i < data->rows; i++) {
@@ -144,9 +144,7 @@ Matrix& Matrix::operator-=(const Matrix &other) {
     }
 
     if (data->referenceCounter > 1) {
-        matrixData* old = data;
         data = data->detach();
-        old->referenceCounter--;
     }
 
     for (int i = 0; i < data->rows; i++) {
@@ -160,9 +158,7 @@ Matrix& Matrix::operator-=(const Matrix &other) {
 
 Matrix& Matrix::operator-=(double number) {
     if (data->referenceCounter > 1) {
-        matrixData* old = data;
         data = data->detach();
-        old->referenceCounter--;
     }
 
     for (int i = 0; i < data->rows; i++) {
@@ -181,9 +177,7 @@ Matrix& Matrix::operator*=(const Matrix& other) {
     }
 
     if (data->referenceCounter > 1) {
-        matrixData* old = data;
         data = data->detach();
-        old->referenceCounter--;
     }
 
     Matrix temp(data->rows, other.data->columns);
@@ -203,9 +197,7 @@ Matrix& Matrix::operator*=(const Matrix& other) {
 
 Matrix& Matrix::operator*=(double number) {
     if (data->referenceCounter > 1) {
-        matrixData* old = data;
         data = data->detach();
-        old->referenceCounter--;
     }
 
     for (int i = 0; i < data->rows; i++) {
@@ -313,9 +305,7 @@ std::istream& operator>>(std::istream& is, Matrix& matrix) {
     }
 
     if (matrix.data->referenceCounter > 1) {
-        matrixData* old = matrix.data;
         matrix.data = matrix.data->detach();
-        old->referenceCounter--;
     }
 
     int oldRows = matrix.data->rows;
