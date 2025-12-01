@@ -1,28 +1,14 @@
-cmake_minimum_required(VERSION 3.22)
-project(Test)
+cmake_minimum_required(VERSION 3.26)
+project(Polygon)
 
 set(CMAKE_CXX_STANDARD 20)
 
-include(FetchContent)
-FetchContent_Declare(
-        googletest
-        URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
-)
-FetchContent_MakeAvailable(googletest)
-
-enable_testing()
-include(GoogleTest)
-
-add_executable(Polygon main.cpp
-        Polygon.h
+add_executable(polygon
+        Point.cpp
+        Point.h
         Polygon.cpp
-        PolygonExceptions.h
         Polygon.h
-        main.cpp
-        PolygonExceptions.cpp)
-
-target_link_libraries(Polygon PRIVATE
-        GTest::gtest_main
+        PolygonExceptions.cpp
+        PolygonExceptions.h
+        TestPolygon.cpp
 )
-
-gtest_discover_tests(Polygon)
