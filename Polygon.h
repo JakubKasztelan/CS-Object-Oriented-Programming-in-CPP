@@ -15,6 +15,8 @@ public:
 
     Point& operator[](int index);
 
+    const Point& operator[](int index) const;
+
     friend std::ostream& operator<<(std::ostream& os, const Polygon& polygon);
 
 private:

@@ -33,6 +33,13 @@ Point& Polygon::operator[](int index) {
     return vertices.at(index);
 }
 
+const Point& Polygon::operator[](int index) const {
+    if (index < 0 || index >= vertices.size()) {
+        throw IndexOutOfBoundsException("Index out of bounds");
+    }
+    return vertices.at(index);
+}
+
 std::ostream& operator<<(std::ostream& os, const Polygon& polygon) {
     for (int i = 0; i < polygon.vertices.size(); i++) {
         os << "point " << i << ": " << polygon.vertices.at(i);
