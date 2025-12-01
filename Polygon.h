@@ -13,7 +13,7 @@ private:
     std::vector<Point> vertices;
 public:
     Polygon();
-    Polygon(const std::vector<Point> vertices);
+    Polygon(const std::vector<Point>& vertices);
     Polygon(std::initializer_list<Point> points);
 
     Point& operator[](int index);

@@ -8,20 +8,21 @@ bool Point::operator==(const Point& other) {
     return false;
 }
 
+
 Polygon::Polygon() {
 }
 
-Polygon::Polygon(const std::vector<Point> vertices) {
-    this->vertices = vertices;
+Polygon::Polygon(const std::vector<Point>& vertices) : vertices(vertices) {
 }
 
-Polygon::Polygon(std::initializer_list<Point> points) {
-    vertices = points;
+Polygon::Polygon(std::initializer_list<Point> points) : vertices(points) {
 }
+
 
 Point& Polygon::operator[](int index) {
     return vertices.at(index);
 }
+
 
 Polygon& Polygon::operator+=(Point point) {
     if (vertices.empty()) {
@@ -49,6 +50,7 @@ Polygon& Polygon::operator-=(Point point) {
     return *this;
 }
 
+
 bool Polygon::operator==(const Polygon& other) {
     if (this->vertices.empty() || other.vertices.empty()) {
         throw PolygonEmptyException("Polygon is empty");
@@ -66,6 +68,7 @@ bool Polygon::operator==(const Polygon& other) {
 
     return true;
 }
+
 
 double Polygon::perimeter() {
     if (vertices.empty()) {
@@ -100,6 +103,7 @@ double Polygon::area() {
 
     return std::abs(sum / 2.0);
 }
+
 
 int Polygon::vertexCount() {
     return vertices.size();
