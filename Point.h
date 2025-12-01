@@ -7,6 +7,7 @@ public:
     double x, y;
 
     Point() = default;
+
     Point(double x, double y);
 };
 

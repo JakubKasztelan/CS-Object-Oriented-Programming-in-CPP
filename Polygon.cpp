@@ -4,13 +4,14 @@
 Polygon::Polygon() {
 }
 
-void Polygon::add(const Point &point) {
+void Polygon::add(const Point& point) {
     vertices.push_back(point);
 }
 
-Polygon Polygon::operator*(double scale) const {;
+Polygon Polygon::operator*(double scale) const {
+    ;
     Polygon newPolygon;
-    for (Point point : vertices) {
+    for (Point point: vertices) {
         point.x *= scale;
         point.y *= scale;
         newPolygon.add(point);
@@ -18,8 +19,8 @@ Polygon Polygon::operator*(double scale) const {;
     return newPolygon;
 }
 
-Polygon& Polygon::operator+=(const Point &vector) {
-    for (Point& point : vertices) {
+Polygon& Polygon::operator+=(const Point& vector) {
+    for (Point& point: vertices) {
         point.x += vector.x;
         point.y += vector.y;
     }
@@ -33,8 +34,7 @@ Point& Polygon::operator[](int index) {
     return vertices.at(index);
 }
 
-
-std::ostream& operator<<(std::ostream &os, const Polygon &polygon) {
+std::ostream& operator<<(std::ostream& os, const Polygon& polygon) {
     for (int i = 0; i < polygon.vertices.size(); i++) {
         os << "point " << i << ": " << polygon.vertices.at(i);
         if (i < polygon.vertices.size() - 1) {
@@ -44,6 +44,6 @@ std::ostream& operator<<(std::ostream &os, const Polygon &polygon) {
     return os;
 }
 
-Polygon operator*(const double &scale, const Polygon& polygon) {
+Polygon operator*(const double& scale, const Polygon& polygon) {
     return polygon * scale;
 }

@@ -10,7 +10,8 @@ public:
     void add(const Point& point);
 
     Polygon operator*(double scale) const;
-    Polygon& operator+=(const Point &vector);
+
+    Polygon& operator+=(const Point& vector);
 
     Point& operator[](int index);
 

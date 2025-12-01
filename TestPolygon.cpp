@@ -14,7 +14,7 @@ int main() {
     cout << "point1: " << point1 << endl;
     // Prints: "point1: (1.5, 2)"
 
-    Point point2(5.5 , 2);
+    Point point2(5.5, 2);
 
     cout << "point2: " << point2 << endl;
     // Prints: "point2: (5.5, 2)"
@@ -99,7 +99,7 @@ int main() {
     // The following line throws IndexOutOfBoundsException
     try {
         polygon3[4] = Point(1, 2);
-    } catch(IndexOutOfBoundsException e) {
+    } catch (IndexOutOfBoundsException e) {
         std::cerr << "Error: " << e.what() << endl;
     }
 }
