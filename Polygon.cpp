@@ -1,4 +1,5 @@
 #include "Polygon.h"
+#include "PolygonExceptions.h"
 
 Polygon::Polygon() {
 }
@@ -26,6 +27,9 @@ Polygon& Polygon::operator+=(const Point &vector) {
 }
 
 Point& Polygon::operator[](int index) {
+    if (index < 0 || index >= vertices.size()) {
+        throw IndexOutOfBoundsException("Index out of bounds");
+    }
     return vertices.at(index);
 }
 

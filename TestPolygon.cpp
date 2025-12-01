@@ -1,10 +1,11 @@
 #include <iostream>
 #include "Polygon.h"
+#include "PolygonExceptions.h"
 
 using namespace std;
 
 int main() {
-    cout << "Functionality for 40%" << endl;
+    cout << "\nFunctionality for 40%" << endl;
 
     Point point1;
     point1.x = 1.5;
@@ -37,7 +38,7 @@ int main() {
     // "point 1: (5.5, 2)"
     // "point 2: (1.5, 4.3)"
 
-    cout << "Functionality for 60%" << endl;
+    cout << "\nFunctionality for 60%" << endl;
 
     double scale = 0.5;
 
@@ -61,7 +62,7 @@ int main() {
     // "point 1: (11, 4)"
     // "point 2: (3, 8.6)"
 
-    cout << "Functionality for 80%" << endl;
+    cout << "\nFunctionality for 80%" << endl;
 
     Point vector(-0.5, 1);
 
@@ -84,7 +85,7 @@ int main() {
     // "point 1: (4, 5)"
     // "point 2: (0, 7.3)"
 
-    cout << "Functionality for 100%" << endl;
+    cout << "\nFunctionality for 100%" << endl;
     polygon3[0] = Point(0.3, 2.5);
     polygon3[1].x = 0.7;
 
@@ -94,4 +95,11 @@ int main() {
     // "point 0: (0.3, 2.5)"
     // "point 1: (0.7, 5)"
     // "point 2: (0, 7.3)"
+
+    // The following line throws IndexOutOfBoundsException
+    try {
+        polygon3[4] = Point(1, 2);
+    } catch(IndexOutOfBoundsException e) {
+        std::cerr << "Error: " << e.what() << endl;
+    }
 }
