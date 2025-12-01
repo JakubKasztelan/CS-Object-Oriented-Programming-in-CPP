@@ -9,7 +9,6 @@ void Polygon::add(const Point& point) {
 }
 
 Polygon Polygon::operator*(double scale) const {
-    ;
     Polygon newPolygon;
     for (Point point: vertices) {
         point.x *= scale;
