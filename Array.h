@@ -9,6 +9,10 @@ public:
 
     Array(int numOfElements);
 
+    Array(const Array& other);
+
+    Array& operator=(const Array& other);
+
     ~Array();
 
     void fill(double value);

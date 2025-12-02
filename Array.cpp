@@ -10,6 +10,16 @@ Array::Array(int numOfElements) {
     size = numOfElements;
 }
 
+Array::Array(const Array& other) {
+    if (other.size == 0) {
+
+    }
+}
+
+Array& Array::operator=(const Array& other) {
+
+}
+
 Array::~Array() {
     delete [] data;
 }
