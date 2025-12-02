@@ -9,6 +9,8 @@ public:
 
     Array(int numOfElements);
 
+    ~Array();
+
     void fill(double value);
 
     void add(double value);

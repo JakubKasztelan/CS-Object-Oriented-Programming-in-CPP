@@ -10,6 +10,10 @@ Array::Array(int numOfElements) {
     size = numOfElements;
 }
 
+Array::~Array() {
+    delete [] data;
+}
+
 void Array::fill(double value) {
     for (int i = 0; i < size; i++) {
         data[i] = value;
