@@ -11,13 +11,21 @@ Array::Array(int numOfElements) {
 }
 
 Array::Array(const Array& other) {
-    if (other.size == 0) {
-
+    this->data = new double[other.size];
+    for (int i = 0; i < other.size; i++) {
+        this->data[i] = other.data[i];
     }
+    this->size = other.size;
 }
 
 Array& Array::operator=(const Array& other) {
-
+    delete [] data;
+    this->data = new double[other.size];
+    for (int i = 0; i < other.size; i++) {
+        this->data[i] = other.data[i];
+    }
+    this->size = other.size;
+    return *this;
 }
 
 Array::~Array() {
