@@ -1,7 +1,7 @@
 #include <exception>
 #include <string>
 
-class IndexOutOfBoundsException : std::exception {
+class IndexOutOfBoundsException : public std::exception {
 private:
     std::string msg;
 
