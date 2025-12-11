@@ -108,11 +108,7 @@ Matrix& Matrix::operator+=(const Matrix &other) {
         throw SizeException("Matrix size mismatch");
     }
 
-    if (data->referenceCounter > 1) {
-        matrixData* old = data;
-        data = data->detach();
-        //old->referenceCounter--;
-    }
+    data = data->detach();
 
     for (int i = 0; i < data->rows; i++) {
         for (int j = 0; j < data->columns; j++) {
@@ -124,9 +120,7 @@ Matrix& Matrix::operator+=(const Matrix &other) {
 }
 
 Matrix& Matrix::operator+=(double number) {
-    if (data->referenceCounter > 1) {
-        data = data->detach();
-    }
+    data = data->detach();
 
     for (int i = 0; i < data->rows; i++) {
         for (int j = 0; j < data->columns; j++) {
@@ -143,9 +137,7 @@ Matrix& Matrix::operator-=(const Matrix &other) {
         throw SizeException("Matrix size mismatch");
     }
 
-    if (data->referenceCounter > 1) {
-        data = data->detach();
-    }
+    data = data->detach();
 
     for (int i = 0; i < data->rows; i++) {
         for (int j = 0; j < data->columns; j++) {
@@ -157,9 +149,7 @@ Matrix& Matrix::operator-=(const Matrix &other) {
 }
 
 Matrix& Matrix::operator-=(double number) {
-    if (data->referenceCounter > 1) {
-        data = data->detach();
-    }
+    data = data->detach();
 
     for (int i = 0; i < data->rows; i++) {
         for (int j = 0; j < data->columns; j++) {
@@ -176,9 +166,7 @@ Matrix& Matrix::operator*=(const Matrix& other) {
         throw SizeException("Matrix size mismatch");
     }
 
-    if (data->referenceCounter > 1) {
-        data = data->detach();
-    }
+    data = data->detach();
 
     Matrix temp(data->rows, other.data->columns);
 
@@ -196,9 +184,7 @@ Matrix& Matrix::operator*=(const Matrix& other) {
 }
 
 Matrix& Matrix::operator*=(double number) {
-    if (data->referenceCounter > 1) {
-        data = data->detach();
-    }
+    data = data->detach();
 
     for (int i = 0; i < data->rows; i++) {
         for (int j = 0; j < data->columns; j++) {
@@ -304,9 +290,8 @@ std::istream& operator>>(std::istream& is, Matrix& matrix) {
         throw SizeException("Invalid matrix dimensions");
     }
 
-    if (matrix.data->referenceCounter > 1) {
-        matrix.data = matrix.data->detach();
-    }
+    matrix.data = matrix.data->detach();
+
 
     int oldRows = matrix.data->rows;
 
