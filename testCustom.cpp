@@ -9,7 +9,7 @@
 typedef unsigned int ID;
 typedef Map<ID, Employee> Database;
 
-TEST(MapTest, AddAndFindEmployees) {
+TEST(MapTestEmployee, AddAndFindEmployees) {
     Database db;
     db.add(761028073, Employee("Jan Kowalski", "salesman", 28));
     db.add(510212881, Employee("Adam Nowak", "storekeeper", 54));
@@ -38,7 +38,7 @@ TEST(MapTest, AddAndFindEmployees) {
     EXPECT_EQ(e4, nullptr);
 }
 
-TEST(MapTest, UpdateExistingEmployee) {
+TEST(MapTestEmployee, UpdateExistingEmployee) {
     Database db;
     db.add(761028073, Employee("Jan Kowalski", "salesman", 28));
     db.add(761028073, Employee("Jan Kowalski", "manager", 29));
@@ -49,7 +49,7 @@ TEST(MapTest, UpdateExistingEmployee) {
     EXPECT_EQ(e1->age, 29);
 }
 
-TEST(MapTest, CopyConstructor) {
+TEST(MapTestEmployee, CopyConstructor) {
     Database db;
     db.add(761028073, Employee("Jan Kowalski", "salesman", 28));
     db.add(510212881, Employee("Adam Nowak", "storekeeper", 54));
@@ -67,7 +67,7 @@ TEST(MapTest, CopyConstructor) {
     EXPECT_EQ(db.find(761028073)->age, 28);
 }
 
-TEST(MapTest, AssignmentOperator) {
+TEST(MapTestEmployee, AssignmentOperator) {
     Database db;
     db.add(761028073, Employee("Jan Kowalski", "salesman", 28));
 
@@ -85,7 +85,18 @@ TEST(MapTest, AssignmentOperator) {
     EXPECT_EQ(e2, nullptr);
 }
 
-TEST(MapTest, LibraryExample) {
+TEST(MapTestEmployee, StreamInsertionOperator) {
+    Database db;
+    db.add(761028073, Employee("Jan Kowalski", "salesman", 28));
+    db.add(510212881, Employee("Adam Nowak", "storekeeper", 54));
+
+    std::ostringstream sstream;
+    sstream << db;
+    std::string expected = "[(761028073, Jan Kowalski (salesman, 28)), (510212881, Adam Nowak (storekeeper, 54))]";
+    EXPECT_EQ(sstream.str(), expected);
+}
+
+TEST(MapTestLibrary, AddAndFindBooks) {
     Map<std::string, Book> library;
     library.add("C++", Book("Kowalski", "Programming", 300, "on shelf"));
     library.add("Mathematics 1", Book("Nowak", "Mathematics", 250, "borrowed"));
@@ -100,9 +111,37 @@ TEST(MapTest, LibraryExample) {
 
     EXPECT_EQ(l1->author, "Kowalski");
     EXPECT_EQ(l1->category, "Programming");
+    EXPECT_EQ(l1->pages, 300);
     EXPECT_EQ(l1->status, "on shelf");
 
     EXPECT_EQ(l2->author, "Nowak");
     EXPECT_EQ(l2->category, "Mathematics");
+    EXPECT_EQ(l2->pages, 250);
     EXPECT_EQ(l2->status, "borrowed");
+}
+
+TEST(MapTestLibrary, UpdateExistingBook) {
+    Map<std::string, Book> library;
+    library.add("C++", Book("Kowalski", "Programming", 300, "on shelf"));
+    library.add("C++", Book("Kowalski", "Programming", 320, "borrowed"));
+
+    Book* l1 = library.find("C++");
+    EXPECT_NE(l1, nullptr);
+    EXPECT_EQ(l1->pages, 320);
+    EXPECT_EQ(l1->status, "borrowed");
+}
+
+TEST(MapTestLibrary, StreamInsertionOperator) {
+    Map<std::string, Book> library;
+    library.add("C++", Book("Kowalski", "Programming", 300, "on shelf"));
+    library.add("Mathematics 1", Book("Nowak", "Mathematics", 250, "borrowed"));
+
+    std::ostringstream sstream;
+    sstream << library;
+
+    std::string expected =
+        "[(C++, Kowalski (Programming, 300on shelf)), "
+        "(Mathematics 1, Nowak (Mathematics, 250borrowed))]";
+
+    EXPECT_EQ(sstream.str(), expected);
 }

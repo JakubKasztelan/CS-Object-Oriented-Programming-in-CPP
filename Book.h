@@ -2,6 +2,7 @@
 #define BOOK_H
 
 #include <string>
+#include <ostream>
 
 struct Book {
     std::string author;
@@ -14,5 +15,10 @@ struct Book {
     Book(std::string a, std::string c, int p, std::string s) : author(a), category(c), pages(p), status(s) {
     }
 };
+
+std::ostream& operator<<(std::ostream& os, const Book& book) {
+    os << book.author << " (" << book.category << ", " << book.pages << book.status << ")";
+    return os;
+}
 
 #endif
