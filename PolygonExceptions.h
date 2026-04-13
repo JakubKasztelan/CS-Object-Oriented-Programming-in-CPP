@@ -1,10 +1,12 @@
-#pragma once
+#include <exception>
 #include <string>
 
-class PolygonEmptyException : public std::exception {
+class IndexOutOfBoundsException : public std::exception {
 private:
     std::string msg;
+
 public:
-    explicit PolygonEmptyException(const std::string& msg);
+    explicit IndexOutOfBoundsException(const std::string& message);
+
     const char* what() const noexcept override;
 };

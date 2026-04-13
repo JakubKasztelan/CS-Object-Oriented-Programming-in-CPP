@@ -1,9 +1,9 @@
 #include "PolygonExceptions.h"
 
-PolygonEmptyException::PolygonEmptyException(const std::string &msg) {
-    this->msg = msg;
+IndexOutOfBoundsException::IndexOutOfBoundsException(const std::string& message)
+    : msg(message) {
 }
 
-const char* PolygonEmptyException::what() const noexcept {
+const char* IndexOutOfBoundsException::what() const noexcept {
     return msg.c_str();
 }

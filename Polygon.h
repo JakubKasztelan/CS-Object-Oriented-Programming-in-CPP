@@ -1,30 +1,26 @@
 #pragma once
 
+#include "Point.h"
 #include <vector>
 
-struct Point {
-    double x, y;
-
-    bool operator==(const Point& other);
-};
-
 class Polygon {
-private:
-    std::vector<Point> vertices;
 public:
     Polygon();
-    Polygon(const std::vector<Point>& vertices);
-    Polygon(std::initializer_list<Point> points);
+
+    void add(const Point& point);
+
+    Polygon operator*(double scale) const;
+
+    Polygon& operator+=(const Point& vector);
 
     Point& operator[](int index);
 
-    Polygon& operator+=(Point point);
-    Polygon& operator-=(Point point);
+    const Point& operator[](int index) const;
 
-    bool operator==(const Polygon& other);
+    friend std::ostream& operator<<(std::ostream& os, const Polygon& polygon);
 
-    double perimeter();
-    double area();
-
-    int vertexCount();
+private:
+    std::vector<Point> vertices;
 };
+
+Polygon operator*(const double& scale, const Polygon& polygon);

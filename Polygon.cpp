@@ -1,110 +1,55 @@
 #include "Polygon.h"
 #include "PolygonExceptions.h"
 
-bool Point::operator==(const Point& other) {
-    if (this->x == other.x && this->y == other.y) {
-        return true;
-    }
-    return false;
-}
-
-
 Polygon::Polygon() {
 }
 
-Polygon::Polygon(const std::vector<Point>& vertices) : vertices(vertices) {
+void Polygon::add(const Point& point) {
+    vertices.push_back(point);
 }
 
-Polygon::Polygon(std::initializer_list<Point> points) : vertices(points) {
+Polygon Polygon::operator*(double scale) const {
+    Polygon newPolygon;
+    for (Point point: vertices) {
+        point.x *= scale;
+        point.y *= scale;
+        newPolygon.add(point);
+    }
+    return newPolygon;
 }
 
+Polygon& Polygon::operator+=(const Point& vector) {
+    for (Point& point: vertices) {
+        point.x += vector.x;
+        point.y += vector.y;
+    }
+    return *this;
+}
 
 Point& Polygon::operator[](int index) {
+    if (index < 0 || index >= vertices.size()) {
+        throw IndexOutOfBoundsException("Index out of bounds");
+    }
     return vertices.at(index);
 }
 
-
-Polygon& Polygon::operator+=(Point point) {
-    if (vertices.empty()) {
-        throw PolygonEmptyException("The polygon doesn't have vertices");
+const Point& Polygon::operator[](int index) const {
+    if (index < 0 || index >= vertices.size()) {
+        throw IndexOutOfBoundsException("Index out of bounds");
     }
-
-    for (Point& vertex : vertices) {
-        vertex.x += point.x;
-        vertex.y += point.y;
-    }
-
-    return *this;
+    return vertices.at(index);
 }
 
-Polygon& Polygon::operator-=(Point point) {
-    if (vertices.empty()) {
-        throw PolygonEmptyException("Polygon is empty");
-    }
-
-    for (Point& vertex : vertices) {
-        vertex.x -= point.x;
-        vertex.y -= point.y;
-    }
-
-    return *this;
-}
-
-
-bool Polygon::operator==(const Polygon& other) {
-    if (this->vertices.empty() || other.vertices.empty()) {
-        throw PolygonEmptyException("Polygon is empty");
-    }
-
-    if (this->vertices.size() != other.vertices.size()) {
-        return false;
-    }
-
-    for (int i = 0; i < this->vertices.size(); i++) {
-        if (this->vertices.at(i) != other.vertices.at(i)) {
-            return false;
+std::ostream& operator<<(std::ostream& os, const Polygon& polygon) {
+    for (int i = 0; i < polygon.vertices.size(); i++) {
+        os << "point " << i << ": " << polygon.vertices.at(i);
+        if (i < polygon.vertices.size() - 1) {
+            os << std::endl;
         }
     }
-
-    return true;
+    return os;
 }
 
-
-double Polygon::perimeter() {
-    if (vertices.empty()) {
-        throw PolygonEmptyException("Polygon is empty");
-    }
-
-    double perimeter = 0.0;
-    int vertexCount = vertices.size();
-
-    for (int i = 0; i < vertexCount; i++) {
-        double dx = (double)vertices.at(i).x - vertices.at((i + 1) % vertexCount).x;
-        double dy = (double)vertices.at(i).y - vertices.at((i + 1) % vertexCount).y;
-        perimeter += sqrt(dx * dx + dy * dy);
-    }
-
-    return perimeter;
-}
-
-double Polygon::area() {
-    if (vertices.empty()) {
-        throw PolygonEmptyException("Polygon is empty");
-    }
-
-    double sum = 0.0;
-    int vertexCount = vertices.size();
-
-    for (int i = 0; i < vertexCount; i++) {
-        int j = (i + 1) % vertexCount;
-        sum += (double)vertices.at(i).x * vertices.at(j).y;
-        sum -= (double)vertices.at(i).y * vertices.at(j).x;
-    }
-
-    return std::abs(sum / 2.0);
-}
-
-
-int Polygon::vertexCount() {
-    return vertices.size();
+Polygon operator*(const double& scale, const Polygon& polygon) {
+    return polygon * scale;
 }
