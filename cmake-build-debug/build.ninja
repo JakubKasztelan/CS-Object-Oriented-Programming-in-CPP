@@ -51,42 +51,42 @@ build cmake_object_order_depends_target_Matrix: phony || cmake_object_order_depe
 
 build CMakeFiles/Matrix.dir/Matrix.cpp.o: CXX_COMPILER__Matrix_unscanned_Debug /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/Matrix.cpp || cmake_object_order_depends_target_Matrix
   DEP_FILE = CMakeFiles/Matrix.dir/Matrix.cpp.o.d
-  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.0.sdk -fcolor-diagnostics
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.1.sdk -fcolor-diagnostics
   INCLUDES = -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest/include -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = CMakeFiles/Matrix.dir
   OBJECT_FILE_DIR = CMakeFiles/Matrix.dir
 
 build CMakeFiles/Matrix.dir/MatrixExceptions.cpp.o: CXX_COMPILER__Matrix_unscanned_Debug /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/MatrixExceptions.cpp || cmake_object_order_depends_target_Matrix
   DEP_FILE = CMakeFiles/Matrix.dir/MatrixExceptions.cpp.o.d
-  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.0.sdk -fcolor-diagnostics
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.1.sdk -fcolor-diagnostics
   INCLUDES = -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest/include -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = CMakeFiles/Matrix.dir
   OBJECT_FILE_DIR = CMakeFiles/Matrix.dir
 
 build CMakeFiles/Matrix.dir/TestMatrixMain.cpp.o: CXX_COMPILER__Matrix_unscanned_Debug /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/TestMatrixMain.cpp || cmake_object_order_depends_target_Matrix
   DEP_FILE = CMakeFiles/Matrix.dir/TestMatrixMain.cpp.o.d
-  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.0.sdk -fcolor-diagnostics
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.1.sdk -fcolor-diagnostics
   INCLUDES = -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest/include -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = CMakeFiles/Matrix.dir
   OBJECT_FILE_DIR = CMakeFiles/Matrix.dir
 
 build CMakeFiles/Matrix.dir/TestMatrixArithmetic.cpp.o: CXX_COMPILER__Matrix_unscanned_Debug /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/TestMatrixArithmetic.cpp || cmake_object_order_depends_target_Matrix
   DEP_FILE = CMakeFiles/Matrix.dir/TestMatrixArithmetic.cpp.o.d
-  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.0.sdk -fcolor-diagnostics
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.1.sdk -fcolor-diagnostics
   INCLUDES = -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest/include -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = CMakeFiles/Matrix.dir
   OBJECT_FILE_DIR = CMakeFiles/Matrix.dir
 
 build CMakeFiles/Matrix.dir/TestMatrixComparison.cpp.o: CXX_COMPILER__Matrix_unscanned_Debug /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/TestMatrixComparison.cpp || cmake_object_order_depends_target_Matrix
   DEP_FILE = CMakeFiles/Matrix.dir/TestMatrixComparison.cpp.o.d
-  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.0.sdk -fcolor-diagnostics
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.1.sdk -fcolor-diagnostics
   INCLUDES = -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest/include -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = CMakeFiles/Matrix.dir
   OBJECT_FILE_DIR = CMakeFiles/Matrix.dir
 
 build CMakeFiles/Matrix.dir/TestMatrixExceptions.cpp.o: CXX_COMPILER__Matrix_unscanned_Debug /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/TestMatrixExceptions.cpp || cmake_object_order_depends_target_Matrix
   DEP_FILE = CMakeFiles/Matrix.dir/TestMatrixExceptions.cpp.o.d
-  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.0.sdk -fcolor-diagnostics
+  FLAGS = -g -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.1.sdk -fcolor-diagnostics
   INCLUDES = -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest/include -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = CMakeFiles/Matrix.dir
   OBJECT_FILE_DIR = CMakeFiles/Matrix.dir
@@ -100,7 +100,7 @@ build CMakeFiles/Matrix.dir/TestMatrixExceptions.cpp.o: CXX_COMPILER__Matrix_uns
 # Link the executable Matrix
 
 build Matrix Matrix[1]_tests.cmake | ${cmake_ninja_workdir}Matrix[1]_tests.cmake: CXX_EXECUTABLE_LINKER__Matrix_Debug CMakeFiles/Matrix.dir/Matrix.cpp.o CMakeFiles/Matrix.dir/MatrixExceptions.cpp.o CMakeFiles/Matrix.dir/TestMatrixMain.cpp.o CMakeFiles/Matrix.dir/TestMatrixArithmetic.cpp.o CMakeFiles/Matrix.dir/TestMatrixComparison.cpp.o CMakeFiles/Matrix.dir/TestMatrixExceptions.cpp.o | lib/libgtest_main.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a
-  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.0.sdk
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.1.sdk
   LINK_LIBRARIES = lib/libgtest_main.a  lib/libgtest.a
   OBJECT_DIR = CMakeFiles/Matrix.dir
   POST_BUILD = cd /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -D TEST_TARGET=Matrix -D TEST_EXECUTABLE=/Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/Matrix -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=Matrix_TESTS -D CTEST_FILE=/Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/Matrix[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/GoogleTestAddTests.cmake
@@ -284,7 +284,7 @@ build cmake_object_order_depends_target_gmock: phony || cmake_object_order_depen
 
 build _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o: CXX_COMPILER__gmock_unscanned_Debug /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googlemock/src/gmock-all.cc || cmake_object_order_depends_target_gmock
   DEP_FILE = _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o.d
-  FLAGS = -g -std=c++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.0.sdk -fcolor-diagnostics  -DGTEST_HAS_PTHREAD=1
+  FLAGS = -g -std=c++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.1.sdk -fcolor-diagnostics  -DGTEST_HAS_PTHREAD=1
   INCLUDES = -I/Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googlemock/include -I/Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googlemock -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest/include -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = _deps/googletest-build/googlemock/CMakeFiles/gmock.dir
   OBJECT_FILE_DIR = _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src
@@ -298,7 +298,7 @@ build _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o:
 # Link the static library lib/libgmock.a
 
 build lib/libgmock.a: CXX_STATIC_LIBRARY_LINKER__gmock_Debug _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o || lib/libgtest.a
-  ARCH_FLAGS = -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.0.sdk
+  ARCH_FLAGS = -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.1.sdk
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = _deps/googletest-build/googlemock/CMakeFiles/gmock.dir
   POST_BUILD = :
@@ -317,7 +317,7 @@ build cmake_object_order_depends_target_gmock_main: phony || cmake_object_order_
 
 build _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o: CXX_COMPILER__gmock_main_unscanned_Debug /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googlemock/src/gmock_main.cc || cmake_object_order_depends_target_gmock_main
   DEP_FILE = _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o.d
-  FLAGS = -g -std=c++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.0.sdk -fcolor-diagnostics  -DGTEST_HAS_PTHREAD=1
+  FLAGS = -g -std=c++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.1.sdk -fcolor-diagnostics  -DGTEST_HAS_PTHREAD=1
   INCLUDES = -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googlemock/include -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googlemock -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest/include -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir
   OBJECT_FILE_DIR = _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src
@@ -331,7 +331,7 @@ build _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main
 # Link the static library lib/libgmock_main.a
 
 build lib/libgmock_main.a: CXX_STATIC_LIBRARY_LINKER__gmock_main_Debug _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o || lib/libgmock.a lib/libgtest.a
-  ARCH_FLAGS = -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.0.sdk
+  ARCH_FLAGS = -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.1.sdk
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir
   POST_BUILD = :
@@ -432,7 +432,7 @@ build cmake_object_order_depends_target_gtest: phony || .
 
 build _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o: CXX_COMPILER__gtest_unscanned_Debug /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest/src/gtest-all.cc || cmake_object_order_depends_target_gtest
   DEP_FILE = _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o.d
-  FLAGS = -g -std=c++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.0.sdk -fcolor-diagnostics  -DGTEST_HAS_PTHREAD=1
+  FLAGS = -g -std=c++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.1.sdk -fcolor-diagnostics  -DGTEST_HAS_PTHREAD=1
   INCLUDES = -I/Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest/include -I/Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = _deps/googletest-build/googletest/CMakeFiles/gtest.dir
   OBJECT_FILE_DIR = _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src
@@ -446,7 +446,7 @@ build _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o:
 # Link the static library lib/libgtest.a
 
 build lib/libgtest.a: CXX_STATIC_LIBRARY_LINKER__gtest_Debug _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
-  ARCH_FLAGS = -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.0.sdk
+  ARCH_FLAGS = -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.1.sdk
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = _deps/googletest-build/googletest/CMakeFiles/gtest.dir
   POST_BUILD = :
@@ -465,7 +465,7 @@ build cmake_object_order_depends_target_gtest_main: phony || cmake_object_order_
 
 build _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o: CXX_COMPILER__gtest_main_unscanned_Debug /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest/src/gtest_main.cc || cmake_object_order_depends_target_gtest_main
   DEP_FILE = _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o.d
-  FLAGS = -g -std=c++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.0.sdk -fcolor-diagnostics  -DGTEST_HAS_PTHREAD=1
+  FLAGS = -g -std=c++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.1.sdk -fcolor-diagnostics  -DGTEST_HAS_PTHREAD=1
   INCLUDES = -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest/include -isystem /Users/jakubkasztelan/Documents/University/3rd_semester/Object_Oriented_Programming_in_C++/Matrix/cmake-build-debug/_deps/googletest-src/googletest
   OBJECT_DIR = _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir
   OBJECT_FILE_DIR = _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src
@@ -479,7 +479,7 @@ build _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main
 # Link the static library lib/libgtest_main.a
 
 build lib/libgtest_main.a: CXX_STATIC_LIBRARY_LINKER__gtest_main_Debug _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o || lib/libgtest.a
-  ARCH_FLAGS = -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.0.sdk
+  ARCH_FLAGS = -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX26.1.sdk
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir
   POST_BUILD = :

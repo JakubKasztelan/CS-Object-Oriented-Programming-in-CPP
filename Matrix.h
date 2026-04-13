@@ -4,19 +4,18 @@
 #include <ostream>
 #include <istream>
 
-/*
-double **arr;
-int rows;
-int columns;
-int *referenceCounter; Separate data struct shared (private) */
 
-class Matrix {
-private:
+struct matrixData {
     double **arr;
     int rows;
     int columns;
-    int *referenceCounter;
+    int referenceCounter;
 
+    matrixData* detach();
+};
+
+
+class Matrix {
 public:
     Matrix(int rows = 0, int columns = 0);
     Matrix(const Matrix& other);
@@ -44,6 +43,10 @@ public:
 
     friend std::istream& operator>>(std::istream& is, Matrix& matrix);
     friend std::ostream& operator<<(std::ostream& os, const Matrix& other);
+
+private:
+    matrixData *data;
+
 };
 
 Matrix operator+(const Matrix& a, const Matrix& b);

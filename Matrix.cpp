@@ -4,24 +4,45 @@
 #include <iostream>
 #include <fstream>
 
-Matrix::Matrix(int rows, int columns) {
-    this->rows = rows;
-    this->columns = columns;
-    referenceCounter = new int(1);
-
-    arr = new double*[rows];
-    for (int i = 0; i < rows; i++) {
-        arr[i] = new double[columns];
+matrixData* matrixData::detach() {
+    if (referenceCounter == 1) {
+        return this;
     }
+    matrixData* newData = new matrixData();
+    newData->rows = this->rows;
+    newData->columns = this->columns;
+    newData->referenceCounter = 1;
+
+    newData->arr = new double*[rows];
+    for (int i = 0; i < newData->rows; i++) {
+        newData->arr[i] = new double[newData->columns];
+        for (int j = 0; j < newData->columns; j++) {
+            newData->arr[i][j] = this->arr[i][j];
+        }
+    }
+
+    referenceCounter--;
+    return newData;
+}
+
+
+Matrix::Matrix(int rows, int columns) {
+    this->data = new matrixData();
+
+    data->rows = rows;
+    data->columns = columns;
+
+    data->arr = new double*[rows];
+    for (int i = 0; i < data->rows; i++) {
+        data->arr[i] = new double[data->columns];
+    }
+
+    data->referenceCounter = 1;
 }
 
 Matrix::Matrix(const Matrix& other) {
-    rows = other.rows;
-    columns = other.columns;
-
-    arr = other.arr;
-    referenceCounter = other.referenceCounter;
-    (*referenceCounter)++;
+    this->data = other.data;
+    this->data->referenceCounter++;
 }
 
 Matrix& Matrix::operator=(const Matrix& other) {
@@ -29,37 +50,35 @@ Matrix& Matrix::operator=(const Matrix& other) {
         return *this;
     }
 
-    if (referenceCounter != nullptr) {
-        (*referenceCounter)--;
-        if (*referenceCounter == 0) {
-            for (int i = 0; i < rows; i++) {
-                delete [] arr[i];
+    if (data->referenceCounter != 0) {
+        (data->referenceCounter)--;
+        if (data->referenceCounter == 0) {
+            for (int i = 0; i < data->rows; i++) {
+                delete [] data->arr[i];
             }
-            delete [] arr;
-            delete referenceCounter;
+            delete [] data->arr;
+            delete data;
         }
     }
 
-    arr = other.arr;
-    rows = other.rows;
-    columns = other.columns;
-    referenceCounter = other.referenceCounter;
-    (*referenceCounter)++;
+    this->data = other.data;
+    this->data->referenceCounter++;
 
     return *this;
 }
 
 Matrix::~Matrix() {
-    (*referenceCounter)--;
-    if (*referenceCounter != 0) {
+    (data->referenceCounter)--;
+    if (data->referenceCounter != 0) {
         return;
     }
 
-    for (int i = 0; i < rows; i++) {
-        delete [] arr[i];
+    for (int i = 0; i < data->rows; i++) {
+        delete [] data->arr[i];
     }
-    delete [] arr;
-    delete referenceCounter;
+    delete [] data->arr;
+
+    delete data;
 }
 
 
@@ -75,22 +94,25 @@ void Matrix::loadFromFile(std::string filepath) {
 
 
 double Matrix::operator()(int row, int column) const {
-    return arr[row][column];
+    return data->arr[row][column];
 }
 
 double &Matrix::operator()(int row, int column) {
-    return arr[row][column];
+    this->data = this->data->detach();
+    return data->arr[row][column];
 }
 
 
 Matrix& Matrix::operator+=(const Matrix &other) {
-    if (rows != other.rows || columns != other.columns) {
+    if (data->rows != other.data->rows || data->columns != other.data->columns) {
         throw SizeException("Matrix size mismatch");
     }
 
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < columns; j++) {
-            arr[i][j] += other.arr[i][j];
+    data = data->detach();
+
+    for (int i = 0; i < data->rows; i++) {
+        for (int j = 0; j < data->columns; j++) {
+            data->arr[i][j] += other.data->arr[i][j];
         }
     }
 
@@ -98,9 +120,11 @@ Matrix& Matrix::operator+=(const Matrix &other) {
 }
 
 Matrix& Matrix::operator+=(double number) {
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < columns; j++) {
-            arr[i][j] += number;
+    data = data->detach();
+
+    for (int i = 0; i < data->rows; i++) {
+        for (int j = 0; j < data->columns; j++) {
+            data->arr[i][j] += number;
         }
     }
 
@@ -109,13 +133,15 @@ Matrix& Matrix::operator+=(double number) {
 
 
 Matrix& Matrix::operator-=(const Matrix &other) {
-    if (rows != other.rows || columns != other.columns) {
+    if (data->rows != other.data->rows || data->columns != other.data->columns) {
         throw SizeException("Matrix size mismatch");
     }
 
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < columns; j++) {
-            arr[i][j] -= other.arr[i][j];
+    data = data->detach();
+
+    for (int i = 0; i < data->rows; i++) {
+        for (int j = 0; j < data->columns; j++) {
+            data->arr[i][j] -= other.data->arr[i][j];
         }
     }
 
@@ -123,9 +149,11 @@ Matrix& Matrix::operator-=(const Matrix &other) {
 }
 
 Matrix& Matrix::operator-=(double number) {
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < columns; j++) {
-            arr[i][j] -= number;
+    data = data->detach();
+
+    for (int i = 0; i < data->rows; i++) {
+        for (int j = 0; j < data->columns; j++) {
+            data->arr[i][j] -= number;
         }
     }
 
@@ -134,17 +162,19 @@ Matrix& Matrix::operator-=(double number) {
 
 
 Matrix& Matrix::operator*=(const Matrix& other) {
-    if (columns != other.rows) {
+    if (data->columns != other.data->rows) {
         throw SizeException("Matrix size mismatch");
     }
 
-    Matrix temp(rows, other.columns);
+    data = data->detach();
 
-    for (int i = 0; i < temp.rows; i++) {
-        for (int j = 0; j < temp.columns; j++) {
-            temp.arr[i][j] = 0;
-            for (int k = 0; k < columns; k++) {
-                temp.arr[i][j] += arr[i][k] * other.arr[k][j];
+    Matrix temp(data->rows, other.data->columns);
+
+    for (int i = 0; i < temp.data->rows; i++) {
+        for (int j = 0; j < temp.data->columns; j++) {
+            temp.data->arr[i][j] = 0;
+            for (int k = 0; k < data->columns; k++) {
+                temp.data->arr[i][j] += data->arr[i][k] * other.data->arr[k][j];
             }
         }
     }
@@ -154,9 +184,11 @@ Matrix& Matrix::operator*=(const Matrix& other) {
 }
 
 Matrix& Matrix::operator*=(double number) {
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < columns; j++) {
-            arr[i][j] *= number;
+    data = data->detach();
+
+    for (int i = 0; i < data->rows; i++) {
+        for (int j = 0; j < data->columns; j++) {
+            data->arr[i][j] *= number;
         }
     }
 
@@ -165,13 +197,13 @@ Matrix& Matrix::operator*=(double number) {
 
 
 bool Matrix::operator==(const Matrix& other) const{
-    if (this->rows != other.rows || this->columns != other.columns) {
+    if (this->data->rows != other.data->rows || this->data->columns != other.data->columns) {
         return false;
     }
 
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < columns; j++) {
-            if (this->arr[i][j] != other.arr[i][j]) {
+    for (int i = 0; i < data->rows; i++) {
+        for (int j = 0; j < data->columns; j++) {
+            if (this->data->arr[i][j] != other.data->arr[i][j]) {
                 return false;
             }
         }
@@ -184,9 +216,11 @@ bool Matrix::operator!=(const Matrix& other) const{
     return !(*this == other);
 }
 
+
 int Matrix::getReferenceCounter() const{
-    return *referenceCounter;
+    return data->referenceCounter;
 }
+
 
 Matrix operator+(const Matrix& a, const Matrix& b) {
     Matrix c = a;
@@ -256,29 +290,30 @@ std::istream& operator>>(std::istream& is, Matrix& matrix) {
         throw SizeException("Invalid matrix dimensions");
     }
 
-    if (matrix.arr) {
-        if (--(*matrix.referenceCounter) == 0) {
-            for (int i = 0; i < matrix.rows; i++) {
-                delete [] matrix.arr[i];
-            }
-            delete [] matrix.arr;
-            delete matrix.referenceCounter;
+    matrix.data = matrix.data->detach();
+
+
+    int oldRows = matrix.data->rows;
+
+    matrix.data->rows = rows;
+    matrix.data->columns = columns;
+
+    if (matrix.data->arr != nullptr) {
+        for (int i = 0; i < oldRows; i++) {
+            delete[] matrix.data->arr[i];
         }
-        matrix.arr = nullptr;
-        matrix.referenceCounter = nullptr;
+        delete[] matrix.data->arr;
     }
 
-    matrix.rows = rows;
-    matrix.columns = columns;
-    matrix.arr = new double*[matrix.rows];
-    for (int i = 0; i < matrix.rows; i++) {
-        matrix.arr[i] = new double[matrix.columns];
+    matrix.data->arr = new double*[matrix.data->rows];
+    for (int i = 0; i < matrix.data->rows; i++) {
+        matrix.data->arr[i] = new double[matrix.data->columns];
     }
-    matrix.referenceCounter = new int(1);
+    matrix.data->referenceCounter = 1;
 
-    for (int i = 0; i < matrix.rows; i++) {
-        for (int j = 0; j < matrix.columns; j++) {
-            if (!(is >> matrix.arr[i][j])) {
+    for (int i = 0; i < matrix.data->rows; i++) {
+        for (int j = 0; j < matrix.data->columns; j++) {
+            if (!(is >> matrix.data->arr[i][j])) {
                 throw MatrixReadException("Error reading the matrix");
             }
         }
@@ -287,9 +322,9 @@ std::istream& operator>>(std::istream& is, Matrix& matrix) {
 }
 
 std::ostream& operator<<(std::ostream& os, const Matrix& matrix) {
-    for (int i = 0; i < matrix.rows; i++) {
-        for (int j = 0; j < matrix.columns; j++) {
-            os << matrix.arr[i][j] << " ";
+    for (int i = 0; i < matrix.data->rows; i++) {
+        for (int j = 0; j < matrix.data->columns; j++) {
+            os << matrix.data->arr[i][j] << " ";
         }
         os << "\n";
     }

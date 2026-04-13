@@ -8,6 +8,7 @@
 
 TEST(MatrixTestsMain, Constructor) {
     Matrix matrix;
+    EXPECT_EQ(matrix.getReferenceCounter(), 1);
 }
 
 TEST(MatrixTestsMain, CopyConstructor) {
@@ -92,4 +93,13 @@ TEST(MatrixTestsMain, SingleElementAccess) {
     a(0,0) = 5;
 
     EXPECT_EQ(a(0, 0), 5);
+
+    Matrix b = a;
+
+    b(0, 0) = 1;
+
+    EXPECT_EQ(a(0, 0), 5);
+    EXPECT_EQ(a.getReferenceCounter(), 1);
+    EXPECT_EQ(b(0, 0), 1);
+    EXPECT_EQ(b.getReferenceCounter(), 1);
 }
